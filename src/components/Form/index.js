@@ -235,14 +235,18 @@ function Form({
           setChecked={isChecked=>setTypesChecked(typesList.WALLET,isChecked)}
         />
       </ContainerCheckTypes>
-  
-      <ContainerHeight height={15}/>
-      <RadioGroup
-        defaultCheckedValue={selected_type}
-        setChecked={value=>setSelected_type(value)}
-        labelGroup="User selected type"
-        checkData={checkDataSelectedType}
-      />
+      {typeFormSelected==="json" && operation === operation_withdraw && (
+        <>
+         <ContainerHeight height={15}/>
+          <RadioGroup
+            defaultCheckedValue={selected_type}
+            setChecked={value=>setSelected_type(value)}
+            labelGroup="User selected type"
+            checkData={checkDataSelectedType}
+          />
+        </>
+      )}
+     
 
     {typeFormSelected==="json" && operation === operation_withdraw && 
           (<ContainerRow>
