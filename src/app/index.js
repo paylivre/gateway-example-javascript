@@ -23,7 +23,6 @@ function App() {
   const [typeFormSelected, setTypeFormSelected] = React.useState("url")
 
   function getUrlGateway(DataURL, signature){
-    console.log({DataURL, signature})
     const partner_transaction_id = `partner_transaction_id=${DataURL.partner_transaction_id}`
     const merchant_id = `merchant_id=${DataURL.merchant_id}`
     const account_id = `account_id=${DataURL.account_id}`
@@ -33,7 +32,6 @@ function App() {
     const calback_url = `callback_url=${DataURL.callback_url}`
     const redirect_url = `redirect_url=${DataURL.redirect_url}`
     const mock_type = `type=${DataURL.type}`
-    // const mock_selected_type = `selected_type=${DataURL.selected_type}`
     const mock_auto_approve = `auto_approve=${DataURL.auto_approve}`
     const Signature = signature?`&signature=${signature}`:""
 

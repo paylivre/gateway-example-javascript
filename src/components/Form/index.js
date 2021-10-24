@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import Button from '@mui/material/Button';
 import {
   Container,
   FormLabelCustom,
@@ -130,9 +131,26 @@ function Form({
     pix_key,
   ])
 
+  function handleReloadRandomFormtData(){
+    setPartnerTransactionId(getRandomPartnerTransactionId())
+    setAccountId(getRandomUserAccountId())
+  }
+
   return (
     <Container>
-      <FormLabelCustom>Merchant Data:</FormLabelCustom>
+      <ContainerRow style={{marginBottom:20, height:50, alignItems:"center"}}>
+       <ContainerFlexWidth widthPercent={48}>
+        <FormLabelCustom style={{margin:0}}>Merchant Data:</FormLabelCustom>
+       </ContainerFlexWidth>
+      <ContainerFlexWidth widthPercent={50} style={{}}>
+        <Button
+              onClick={()=> handleReloadRandomFormtData()}
+              style={{
+                width:"100%",
+                textTransform: "none"}}
+              variant="outlined">Reload Random Data</Button>
+      </ContainerFlexWidth>
+      </ContainerRow>
       <ContainerRow>
         <ContainerFlexWidth widthPercent={48}>
           <Input
