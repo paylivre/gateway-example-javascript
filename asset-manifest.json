@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "/static/css/main.e49da782.chunk.css",
-    "main.js": "/static/js/main.fae40205.chunk.js",
-    "main.js.map": "/static/js/main.fae40205.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.61e6c1d7.js",
-    "runtime-main.js.map": "/static/js/runtime-main.61e6c1d7.js.map",
-    "static/css/2.0a0ce284.chunk.css": "/static/css/2.0a0ce284.chunk.css",
-    "static/js/2.505e69fd.chunk.js": "/static/js/2.505e69fd.chunk.js",
-    "static/js/2.505e69fd.chunk.js.map": "/static/js/2.505e69fd.chunk.js.map",
-    "index.html": "/index.html",
-    "static/css/2.0a0ce284.chunk.css.map": "/static/css/2.0a0ce284.chunk.css.map",
-    "static/css/main.e49da782.chunk.css.map": "/static/css/main.e49da782.chunk.css.map",
-    "static/js/2.505e69fd.chunk.js.LICENSE.txt": "/static/js/2.505e69fd.chunk.js.LICENSE.txt",
-    "static/media/notifications.css": "/static/media/notification.c5d9251e.ttf"
+    "main.css": "/gateway-example-react-js/static/css/main.e49da782.chunk.css",
+    "main.js": "/gateway-example-react-js/static/js/main.fae40205.chunk.js",
+    "main.js.map": "/gateway-example-react-js/static/js/main.fae40205.chunk.js.map",
+    "runtime-main.js": "/gateway-example-react-js/static/js/runtime-main.bda8972d.js",
+    "runtime-main.js.map": "/gateway-example-react-js/static/js/runtime-main.bda8972d.js.map",
+    "static/css/2.dc0e3eea.chunk.css": "/gateway-example-react-js/static/css/2.dc0e3eea.chunk.css",
+    "static/js/2.2bf0e7d2.chunk.js": "/gateway-example-react-js/static/js/2.2bf0e7d2.chunk.js",
+    "static/js/2.2bf0e7d2.chunk.js.map": "/gateway-example-react-js/static/js/2.2bf0e7d2.chunk.js.map",
+    "index.html": "/gateway-example-react-js/index.html",
+    "static/css/2.dc0e3eea.chunk.css.map": "/gateway-example-react-js/static/css/2.dc0e3eea.chunk.css.map",
+    "static/css/main.e49da782.chunk.css.map": "/gateway-example-react-js/static/css/main.e49da782.chunk.css.map",
+    "static/js/2.2bf0e7d2.chunk.js.LICENSE.txt": "/gateway-example-react-js/static/js/2.2bf0e7d2.chunk.js.LICENSE.txt",
+    "static/media/notifications.css": "/gateway-example-react-js/static/media/notification.c5d9251e.ttf"
   },
   "entrypoints": [
-    "static/js/runtime-main.61e6c1d7.js",
-    "static/css/2.0a0ce284.chunk.css",
-    "static/js/2.505e69fd.chunk.js",
+    "static/js/runtime-main.bda8972d.js",
+    "static/css/2.dc0e3eea.chunk.css",
+    "static/js/2.2bf0e7d2.chunk.js",
     "static/css/main.e49da782.chunk.css",
     "static/js/main.fae40205.chunk.js"
   ]
