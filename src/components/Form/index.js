@@ -266,21 +266,27 @@ function Form({
           isChecked={typesCheckeds[typesList.PIX]}
           setChecked={(isChecked) => setTypesChecked(typesList.PIX, isChecked)}
         />
-        {/* <Checkbox
+        <Checkbox
           label="Billet"
           isChecked={typesCheckeds[typesList.BILLET]}
-          setChecked={(isChecked) => setTypesChecked(typesList.BILLET, isChecked)}
+          setChecked={(isChecked) =>
+            setTypesChecked(typesList.BILLET, isChecked)
+          }
         />
         <Checkbox
           label="Wire Transfer"
           isChecked={typesCheckeds[typesList.WIRETRANFER]}
-          setChecked={(isChecked) => setTypesChecked(typesList.WIRETRANFER, isChecked)}
+          setChecked={(isChecked) =>
+            setTypesChecked(typesList.WIRETRANFER, isChecked)
+          }
         />
         <Checkbox
           label="Paylivre Wallet"
           isChecked={typesCheckeds[typesList.WALLET]}
-          setChecked={(isChecked) => setTypesChecked(typesList.WALLET, isChecked)}
-        /> */}
+          setChecked={(isChecked) =>
+            setTypesChecked(typesList.WALLET, isChecked)
+          }
+        />
       </ContainerCheckTypes>
       {typeFormSelected === "json" && operation === operation_withdraw && (
         <>
