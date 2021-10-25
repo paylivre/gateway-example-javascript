@@ -1,10 +1,10 @@
-const argon2 = require('argon2-browser');
+const argon2 = require("argon2-browser");
 
 export async function getArgon2i(pass) {
   const argon2i = await argon2
     .hash({
       pass,
-      salt: 'dZk8N6kUaA32XCsS',
+      salt: "dZk8N6kUaA32XCsS",
       time: 2,
       mem: 16,
       parallelism: 1,

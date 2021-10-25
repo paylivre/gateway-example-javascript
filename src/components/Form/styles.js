@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Container = styled.div`
   width: 45%;
@@ -28,5 +28,5 @@ export const ContainerCheckTypes = styled.div`
 export const FormLabelCustom = styled.h2`
   font-size: 18px;
   color: grey;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 `;

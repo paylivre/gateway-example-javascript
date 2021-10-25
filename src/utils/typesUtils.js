@@ -27,11 +27,12 @@ export const typesList = {
 };
 
 export function getTypeInteger(typesCheckeds) {
-  const binTypePix = typesCheckeds[4] ? '1' : '0';
-  const binTypeBillet = typesCheckeds[1] ? '1' : '0';
-  const binTypeWireTransfer = typesCheckeds[0] ? '1' : '0';
-  const binTypeWallet = typesCheckeds[5] ? '1' : '0';
-  const typeInBinary = binTypeWallet + binTypeWireTransfer + binTypeBillet + binTypePix;
+  const binTypePix = typesCheckeds[4] ? "1" : "0";
+  const binTypeBillet = typesCheckeds[1] ? "1" : "0";
+  const binTypeWireTransfer = typesCheckeds[0] ? "1" : "0";
+  const binTypeWallet = typesCheckeds[5] ? "1" : "0";
+  const typeInBinary =
+    binTypeWallet + binTypeWireTransfer + binTypeBillet + binTypePix;
   const typeInInteger = parseInt(typeInBinary, 2);
   return typeInInteger.toString();
 }

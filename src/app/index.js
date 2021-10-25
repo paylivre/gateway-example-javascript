@@ -1,23 +1,25 @@
 /* eslint-disable no-unused-expressions */
-import React from 'react';
-import Button from '@mui/material/Button';
-import Form from '../components/Form';
-import { getArgon2i } from '../services/argon2i';
-import { utf8_to_b64 } from '../utils/base64';
-import { Container, ContainerResult } from './styles';
+import React from "react";
+import Button from "@mui/material/Button";
+import Form from "../components/Form";
+import { getArgon2i } from "../services/argon2i";
+import { utf8_to_b64 } from "../utils/base64";
+import { Container, ContainerResult } from "./styles";
 
-import { ContainerRow, ContainerFlexWidth } from '../components/styles';
+import { ContainerRow, ContainerFlexWidth } from "../components/styles";
 
-import RequestJson from '../components/RequestJson';
+import RequestJson from "../components/RequestJson";
 
 function App() {
-  const [base_url, setBaseUrl] = React.useState('https://dev.gateway.paylivre.com');
+  const [base_url, setBaseUrl] = React.useState(
+    "https://dev.gateway.paylivre.com"
+  );
   const [data, setData] = React.useState({});
-  const [gateway_token, setGateway_token] = React.useState('teste');
+  const [gateway_token, setGateway_token] = React.useState("teste");
   const [urlGenerated, setUrlGenerated] = React.useState(false);
-  const [url, setURL] = React.useState('');
-  const [urlGateway, setUrlGateway] = React.useState('');
-  const [typeFormSelected, setTypeFormSelected] = React.useState('url');
+  const [url, setURL] = React.useState("");
+  const [urlGateway, setUrlGateway] = React.useState("");
+  const [typeFormSelected, setTypeFormSelected] = React.useState("url");
 
   function getUrlGateway(DataURL, signature) {
     const merchant_transaction_id = `merchant_transaction_id=${DataURL.merchant_transaction_id}`;
@@ -30,10 +32,12 @@ function App() {
     const redirect_url = `redirect_url=${DataURL.redirect_url}`;
     const mock_type = `type=${DataURL.type}`;
     const mock_auto_approve = `auto_approve=${DataURL.auto_approve}`;
-    const Signature = signature ? `&signature=${signature}` : '';
+    const Signature = signature ? `&signature=${signature}` : "";
 
-    const email = DataURL.email ? `&email=${DataURL.email}` : '';
-    const document_number = DataURL.document_number ? `&document_number=${DataURL.document_number}` : '';
+    const email = DataURL.email ? `&email=${DataURL.email}` : "";
+    const document_number = DataURL.document_number
+      ? `&document_number=${DataURL.document_number}`
+      : "";
 
     const UrlGateway = `${base_url}?${merchant_transaction_id}&${merchant_id}&${operation}${email}${document_number}&${amount}&${currency}&${mock_type}&${account_id}&${calback_url}&${redirect_url}&${mock_auto_approve}${Signature}`;
 
@@ -104,7 +108,7 @@ function App() {
         <ContainerResult>
           {urlGenerated && (
             <>
-              {typeFormSelected === 'url' && (
+              {typeFormSelected === "url" && (
                 <RequestJson
                   type={typeFormSelected}
                   style={{ marginBottom: 20 }}
@@ -114,7 +118,7 @@ function App() {
                 />
               )}
 
-              {typeFormSelected === 'json' && (
+              {typeFormSelected === "json" && (
                 <RequestJson
                   type={typeFormSelected}
                   style={{ marginBottom: 20 }}
@@ -129,7 +133,7 @@ function App() {
           <Button
             size="large"
             onClick={() => handleGenerateSignature()}
-            style={{ width: '100%', textTransform: 'none' }}
+            style={{ width: "100%", textTransform: "none" }}
             variant="contained"
           >
             {`Generate ${typeFormSelected.toUpperCase()}`}

@@ -1,5 +1,5 @@
 {
-  "name": "merchant-example",
+  "name": "merchant-example-react-js",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -37,7 +37,6 @@
     "lint": "eslint ./",
     "lintFix": "eslint ./ --fix"
   },
-  "homepage": "https://paylivre.github.io/gateway-example-react",
   "eslintConfig": {
     "extends": [
       "react-app",

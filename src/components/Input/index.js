@@ -1,5 +1,5 @@
-import React from 'react';
-import { InputCustom } from './styles';
+import React from "react";
+import { InputCustom } from "./styles";
 
 function Input({ label, value, setValue }) {
   return (

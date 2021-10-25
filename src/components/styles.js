@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const ContainerRow = styled.div`
   width: 100%;
@@ -12,7 +12,7 @@ export const ContainerRow = styled.div`
 `;
 
 export const ContainerFlexWidth = styled.div`
-  width: ${({ widthPercent }) => (widthPercent ? `${widthPercent}%` : '100%')};
+  width: ${({ widthPercent }) => (widthPercent ? `${widthPercent}%` : "100%")};
   flex-direction: row;
   height: auto;
   @media (max-width: 930px) {

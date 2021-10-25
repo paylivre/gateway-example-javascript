@@ -1,42 +1,64 @@
-import React, { useEffect } from 'react';
-import Button from '@mui/material/Button';
-import FormLabel from '@mui/material/FormLabel';
-import { Container, FormLabelCustom, ContainerHeight, ContainerCheckTypes } from './styles';
+import React, { useEffect } from "react";
+import Button from "@mui/material/Button";
+import FormLabel from "@mui/material/FormLabel";
+import {
+  Container,
+  FormLabelCustom,
+  ContainerHeight,
+  ContainerCheckTypes,
+} from "./styles";
 
-import { ContainerRow, ContainerFlexWidth } from '../styles';
+import { ContainerRow, ContainerFlexWidth } from "../styles";
 
-import Input from '../Input';
-import RadioGroup from '../RadioGroup';
-import Checkbox from '../CheckBox';
-import { typesList, getTypeInteger } from '../../utils/typesUtils';
-import { PixKeyTypes } from '../../utils/pixKeyTypes';
+import Input from "../Input";
+import RadioGroup from "../RadioGroup";
+import Checkbox from "../CheckBox";
+import { typesList, getTypeInteger } from "../../utils/typesUtils";
+import { PixKeyTypes } from "../../utils/pixKeyTypes";
 
-import { getRandomMerchantTransactionId, getRandomUserAccountId } from '../../utils/generatePropsRandom';
+import {
+  getRandomMerchantTransactionId,
+  getRandomUserAccountId,
+} from "../../utils/generatePropsRandom";
 
-function Form({ setData, setGateway_token, gateway_token, setUrlGenerated, base_url, setBaseUrl, typeFormSelected }) {
-  const operation_deposit = '0';
-  const operation_withdraw = '5';
-  const [merchant_id, setMerchantId] = React.useState('19');
-  const [merchant_transaction_id, setMerchantTransactionId] = React.useState(getRandomMerchantTransactionId());
-  const [email, setEmail] = React.useState('person_user_gateway@test.com');
-  const [document_number, setDocumentNumber] = React.useState('60712326006');
+function Form({
+  setData,
+  setGateway_token,
+  gateway_token,
+  setUrlGenerated,
+  base_url,
+  setBaseUrl,
+  typeFormSelected,
+}) {
+  const operation_deposit = "0";
+  const operation_withdraw = "5";
+  const [merchant_id, setMerchantId] = React.useState("19");
+  const [merchant_transaction_id, setMerchantTransactionId] = React.useState(
+    getRandomMerchantTransactionId()
+  );
+  const [email, setEmail] = React.useState("person_user_gateway@test.com");
+  const [document_number, setDocumentNumber] = React.useState("60712326006");
   const [account_id, setAccountId] = React.useState(getRandomUserAccountId());
-  const [currency, setCurrency] = React.useState('BRL');
+  const [currency, setCurrency] = React.useState("BRL");
   const [operation, setOperation] = React.useState(operation_deposit);
-  const [amount, setAmount] = React.useState('500');
-  const [callback_url, setcCallback_url] = React.useState('https://www.merchant.com');
-  const [redirect_url, setRedirect_url] = React.useState('https://www.merchant_to_you.com');
+  const [amount, setAmount] = React.useState("500");
+  const [callback_url, setcCallback_url] = React.useState(
+    "https://www.merchant.com"
+  );
+  const [redirect_url, setRedirect_url] = React.useState(
+    "https://www.merchant_to_you.com"
+  );
   const [typesCheckeds, setTypesCheckeds] = React.useState({
     [typesList.WIRETRANFER]: false,
     [typesList.BILLET]: false,
     [typesList.PIX]: true,
     [typesList.WALLET]: false,
   });
-  const [type, setType] = React.useState('1');
-  const [selected_type, setSelected_type] = React.useState('4');
+  const [type, setType] = React.useState("1");
+  const [selected_type, setSelected_type] = React.useState("4");
   const [checkDataSelectedType, setCheckDataSelectedType] = React.useState([]);
   const [pix_key_type, setPix_key_type] = React.useState(PixKeyTypes.document);
-  const [pix_key, setPix_key] = React.useState('60712326006');
+  const [pix_key, setPix_key] = React.useState("60712326006");
 
   function setTypesChecked(typeKey, isChecked) {
     const newTypesCheckeds = { ...typesCheckeds, [typeKey]: isChecked };
@@ -51,25 +73,25 @@ function Form({ setData, setGateway_token, gateway_token, setUrlGenerated, base_
       if (typesCheckeds[4]) {
         newCheckDataSelectedType.push({
           value: typesList.PIX.toString(),
-          label: 'Pix',
+          label: "Pix",
         });
       }
       if (typesCheckeds[1]) {
         newCheckDataSelectedType.push({
           value: typesList.BILLET.toString(),
-          label: 'Billet',
+          label: "Billet",
         });
       }
       if (typesCheckeds[0]) {
         newCheckDataSelectedType.push({
           value: typesList.WIRETRANFER.toString(),
-          label: 'Wire Transfer',
+          label: "Wire Transfer",
         });
       }
       if (typesCheckeds[5]) {
         newCheckDataSelectedType.push({
           value: typesList.WALLET.toString(),
-          label: 'Paylivre Wallet',
+          label: "Paylivre Wallet",
         });
       }
       setCheckDataSelectedType(newCheckDataSelectedType);
@@ -78,7 +100,7 @@ function Form({ setData, setGateway_token, gateway_token, setUrlGenerated, base_
   }, [typesCheckeds]);
 
   useEffect(() => {
-    const auto_approve = '1';
+    const auto_approve = "1";
     // Toda vez que alterar algum dado no data
     setUrlGenerated(false);
 
@@ -100,8 +122,8 @@ function Form({ setData, setGateway_token, gateway_token, setUrlGenerated, base_
         redirect_url,
         selected_type,
         type,
-        pix_key_type: isWithdraw ? pix_key_type : '',
-        pix_key: isWithdraw ? pix_key : '',
+        pix_key_type: isWithdraw ? pix_key_type : "",
+        pix_key: isWithdraw ? pix_key : "",
       };
     });
   }, [
@@ -132,16 +154,20 @@ function Form({ setData, setGateway_token, gateway_token, setUrlGenerated, base_
 
   return (
     <Container>
-      <ContainerRow style={{ marginBottom: 20, height: 50, alignItems: 'center' }}>
+      <ContainerRow
+        style={{ marginBottom: 20, height: 50, alignItems: "center" }}
+      >
         <ContainerFlexWidth widthPercent={48}>
-          <FormLabelCustom style={{ margin: 0 }}>Merchant Data:</FormLabelCustom>
+          <FormLabelCustom style={{ margin: 0 }}>
+            Merchant Data:
+          </FormLabelCustom>
         </ContainerFlexWidth>
         <ContainerFlexWidth widthPercent={50} style={{}}>
           <Button
             onClick={() => handleReloadRandomFormtData()}
             style={{
-              width: '100%',
-              textTransform: 'none',
+              width: "100%",
+              textTransform: "none",
             }}
             variant="outlined"
           >
@@ -151,7 +177,11 @@ function Form({ setData, setGateway_token, gateway_token, setUrlGenerated, base_
       </ContainerRow>
       <ContainerRow>
         <ContainerFlexWidth widthPercent={48}>
-          <Input value={merchant_id} setValue={(value) => setMerchantId(value)} label="Merchant ID:" />
+          <Input
+            value={merchant_id}
+            setValue={(value) => setMerchantId(value)}
+            label="Merchant ID:"
+          />
           <ContainerHeight height={15} />
         </ContainerFlexWidth>
         <ContainerFlexWidth widthPercent={45}>
@@ -164,10 +194,18 @@ function Form({ setData, setGateway_token, gateway_token, setUrlGenerated, base_
       </ContainerRow>
 
       <ContainerHeight height={5} />
-      <Input value={gateway_token} setValue={(value) => setGateway_token(value)} label="Gateway Token:" />
+      <Input
+        value={gateway_token}
+        setValue={(value) => setGateway_token(value)}
+        label="Gateway Token:"
+      />
 
       <FormLabelCustom>User Data:</FormLabelCustom>
-      <Input value={email} setValue={(value) => setEmail(value)} label="User Email:" />
+      <Input
+        value={email}
+        setValue={(value) => setEmail(value)}
+        label="User Email:"
+      />
       <ContainerHeight height={20} />
       <ContainerRow>
         <ContainerFlexWidth widthPercent={48}>
@@ -179,14 +217,22 @@ function Form({ setData, setGateway_token, gateway_token, setUrlGenerated, base_
         </ContainerFlexWidth>
 
         <ContainerFlexWidth widthPercent={48}>
-          <Input value={account_id} setValue={(value) => setAccountId(value)} label="User Account ID in Merchant:" />
+          <Input
+            value={account_id}
+            setValue={(value) => setAccountId(value)}
+            label="User Account ID in Merchant:"
+          />
         </ContainerFlexWidth>
       </ContainerRow>
 
       <FormLabelCustom>Transaction Data:</FormLabelCustom>
       <ContainerRow>
         <ContainerFlexWidth widthPercent={48}>
-          <Input value={amount} setValue={(value) => setAmount(value)} label="Amount:" />
+          <Input
+            value={amount}
+            setValue={(value) => setAmount(value)}
+            label="Amount:"
+          />
         </ContainerFlexWidth>
 
         <ContainerFlexWidth widthPercent={48}>
@@ -195,8 +241,8 @@ function Form({ setData, setGateway_token, gateway_token, setUrlGenerated, base_
             setChecked={(value) => setCurrency(value)}
             labelGroup="Currency"
             checkData={[
-              { value: 'BRL', label: 'BRL' },
-              { value: 'USD', label: 'USD' },
+              { value: "BRL", label: "BRL" },
+              { value: "USD", label: "USD" },
             ]}
           />
         </ContainerFlexWidth>
@@ -208,8 +254,8 @@ function Form({ setData, setGateway_token, gateway_token, setUrlGenerated, base_
         setChecked={(value) => setOperation(value)}
         labelGroup="Operation"
         checkData={[
-          { value: '0', label: 'Deposit' },
-          { value: '5', label: 'Withdraw' },
+          { value: "0", label: "Deposit" },
+          { value: "5", label: "Withdraw" },
         ]}
       />
       <ContainerHeight height={15} />
@@ -236,7 +282,7 @@ function Form({ setData, setGateway_token, gateway_token, setUrlGenerated, base_
           setChecked={(isChecked) => setTypesChecked(typesList.WALLET, isChecked)}
         /> */}
       </ContainerCheckTypes>
-      {typeFormSelected === 'json' && operation === operation_withdraw && (
+      {typeFormSelected === "json" && operation === operation_withdraw && (
         <>
           <ContainerHeight height={15} />
           <RadioGroup
@@ -248,7 +294,7 @@ function Form({ setData, setGateway_token, gateway_token, setUrlGenerated, base_
         </>
       )}
 
-      {typeFormSelected === 'json' && operation === operation_withdraw && (
+      {typeFormSelected === "json" && operation === operation_withdraw && (
         <ContainerRow>
           <ContainerFlexWidth widthPercent={48}>
             <ContainerHeight height={25} />
@@ -257,29 +303,45 @@ function Form({ setData, setGateway_token, gateway_token, setUrlGenerated, base_
               setChecked={(value) => setPix_key_type(value)}
               labelGroup="Pix Key Type"
               checkData={[
-                { value: PixKeyTypes.document, label: 'CPF/CNPJ' },
-                { value: PixKeyTypes.phone, label: 'Phone' },
-                { value: PixKeyTypes.email, label: 'Email' },
+                { value: PixKeyTypes.document, label: "CPF/CNPJ" },
+                { value: PixKeyTypes.phone, label: "Phone" },
+                { value: PixKeyTypes.email, label: "Email" },
               ]}
             />
           </ContainerFlexWidth>
 
           <ContainerFlexWidth widthPercent={48}>
             <ContainerHeight height={30} />
-            <Input value={pix_key} setValue={(value) => setPix_key(value)} label="User Pix Key" />
+            <Input
+              value={pix_key}
+              setValue={(value) => setPix_key(value)}
+              label="User Pix Key"
+            />
           </ContainerFlexWidth>
         </ContainerRow>
       )}
 
       <ContainerHeight height={15} />
-      <Input value={callback_url} setValue={(value) => setcCallback_url(value)} label="Callback URL:" />
+      <Input
+        value={callback_url}
+        setValue={(value) => setcCallback_url(value)}
+        label="Callback URL:"
+      />
       <ContainerHeight height={20} />
 
-      <Input value={redirect_url} setValue={(value) => setRedirect_url(value)} label="Redirect URL:" />
+      <Input
+        value={redirect_url}
+        setValue={(value) => setRedirect_url(value)}
+        label="Redirect URL:"
+      />
 
       <ContainerHeight height={15} />
       <FormLabelCustom>Environment:</FormLabelCustom>
-      <Input value={base_url} setValue={(value) => setBaseUrl(value)} label="Base URL" />
+      <Input
+        value={base_url}
+        setValue={(value) => setBaseUrl(value)}
+        label="Base URL"
+      />
     </Container>
   );
 }
