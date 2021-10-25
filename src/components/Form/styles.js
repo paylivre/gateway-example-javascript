@@ -15,19 +15,18 @@ export const Container = styled.div`
 `;
 
 export const ContainerHeight = styled.div`
-width: 100%;
-height: ${({height})=> height? height+"px" : 0};
-`
-
+  width: 100%;
+  height: ${({ height }) => (height ? `${height}px` : 0)};
+`;
 
 export const ContainerCheckTypes = styled.div`
-width: 100%;
-flex-direction: row;
-height: auto;
-`
+  width: 100%;
+  flex-direction: row;
+  height: auto;
+`;
 
 export const FormLabelCustom = styled.h2`
   font-size: 18px;
   color: grey;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-`
+`;

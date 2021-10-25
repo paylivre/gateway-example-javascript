@@ -16,17 +16,17 @@ export const Container = styled.div`
 
 export const PColor = styled.p`
   font-size: small;
-  color: ${({color})=>color?color:"#fff"};
+  color: ${({ color }) => color || '#fff'};
   margin: 0;
   max-width: 100%;
   display: flex;
   font-size: 14px;
   word-break: break-all;
   font-family: 'Courier New', Courier, monospace;
-`
+`;
 
 export const FormLabelCustom = styled.h2`
   font-size: 18px;
   color: white;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-`
+`;
