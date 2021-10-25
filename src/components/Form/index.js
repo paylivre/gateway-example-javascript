@@ -220,7 +220,7 @@ function Form({ setData, setGateway_token, gateway_token, setUrlGenerated, base_
           isChecked={typesCheckeds[typesList.PIX]}
           setChecked={(isChecked) => setTypesChecked(typesList.PIX, isChecked)}
         />
-        <Checkbox
+        {/* <Checkbox
           label="Billet"
           isChecked={typesCheckeds[typesList.BILLET]}
           setChecked={(isChecked) => setTypesChecked(typesList.BILLET, isChecked)}
@@ -234,7 +234,7 @@ function Form({ setData, setGateway_token, gateway_token, setUrlGenerated, base_
           label="Paylivre Wallet"
           isChecked={typesCheckeds[typesList.WALLET]}
           setChecked={(isChecked) => setTypesChecked(typesList.WALLET, isChecked)}
-        />
+        /> */}
       </ContainerCheckTypes>
       {typeFormSelected === 'json' && operation === operation_withdraw && (
         <>

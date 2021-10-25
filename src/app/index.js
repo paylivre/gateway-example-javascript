@@ -59,7 +59,7 @@ function App() {
 
   return (
     <>
-      <ContainerRow style={{ justifyContent: 'center' }}>
+      {/* <ContainerRow style={{ justifyContent: 'center' }}>
         <ContainerFlexWidth widthPercent={20} style={{ marginRight: 20, marginBottom: 20 }}>
           <Button
             onClick={() => setTypeFormSelected('url')}
@@ -87,7 +87,7 @@ function App() {
             Select Form to Request JSON
           </Button>
         </ContainerFlexWidth>
-      </ContainerRow>
+      </ContainerRow> */}
 
       <Container>
         <Form
