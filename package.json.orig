@@ -31,13 +31,15 @@
     "build": "react-app-rewired build",
     "test": "react-app-rewired test",
     "eject": "react-app-rewired eject",
+<<<<<<< HEAD
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
+    "deploy": "gh-pages -d build"
+=======
     "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
     "lint": "eslint ./",
     "lintFix": "eslint ./ --fix"
+>>>>>>> d4a3c49 (INTERNO -> Configurado Eslint e outras melhorias de Codigo)
   },
-  "homepage": "https://paylivre.github.io/gateway-example-react",
   "eslintConfig": {
     "extends": [
       "react-app",
@@ -57,7 +59,9 @@
     ]
   },
   "devDependencies": {
-    "gh-pages": "^3.2.3",
+<<<<<<< HEAD
+    "gh-pages": "^3.2.3"
+=======
     "babel-eslint": "^10.1.0",
     "eslint": "^7.32.0",
     "eslint-config-airbnb": "^18.2.1",
@@ -71,5 +75,6 @@
     "eslint-plugin-react": "^7.26.1",
     "eslint-plugin-react-hooks": "^4.2.0",
     "prettier": "^2.4.1"
+>>>>>>> d4a3c49 (INTERNO -> Configurado Eslint e outras melhorias de Codigo)
   }
 }
