@@ -26,6 +26,7 @@
     "uuid": "^8.3.2",
     "web-vitals": "^1.0.1"
   },
+  "homepage": "https://paylivre.github.io/gateway-example-react-js/",
   "scripts": {
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
