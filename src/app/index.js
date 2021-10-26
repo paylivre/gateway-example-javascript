@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-expressions */
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 import Button from "@mui/material/Button";
 import Form from "../components/Form";
 import { getArgon2i } from "../services/argon2i";
@@ -11,8 +11,14 @@ import { ContainerRow, ContainerFlexWidth } from "../components/styles";
 
 import RequestJson from "../components/RequestJson";
 
+function useQuery() {
+  return new URLSearchParams(useLocation().search);
+}
+
 function App() {
   const { environment } = useParams();
+  const query = useQuery();
+  const isDev = query.get("dev") === "1";
 
   const [base_url, setBaseUrl] = React.useState(
     "https://dev.gateway.paylivre.com"
@@ -64,9 +70,11 @@ function App() {
     setUrlGenerated(true);
   }
 
+  console.log({ environment });
+
   return (
     <>
-      {environment === "paylivre_dev" && (
+      {isDev && (
         <ContainerRow style={{ justifyContent: "center" }}>
           <ContainerFlexWidth
             widthPercent={20}
