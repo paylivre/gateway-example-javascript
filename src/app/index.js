@@ -63,14 +63,17 @@ function App() {
 
   return (
     <>
-      {/* <ContainerRow style={{ justifyContent: 'center' }}>
-        <ContainerFlexWidth widthPercent={20} style={{ marginRight: 20, marginBottom: 20 }}>
+      {/* <ContainerRow style={{ justifyContent: "center" }}>
+        <ContainerFlexWidth
+          widthPercent={20}
+          style={{ marginRight: 20, marginBottom: 20 }}
+        >
           <Button
-            onClick={() => setTypeFormSelected('url')}
+            onClick={() => setTypeFormSelected("url")}
             style={{
-              width: '100%',
-              textTransform: 'none',
-              background: typeFormSelected === 'url' ? '#1976d2' : '#c4c4c4',
+              width: "100%",
+              textTransform: "none",
+              background: typeFormSelected === "url" ? "#1976d2" : "#c4c4c4",
             }}
             variant="contained"
           >
@@ -80,11 +83,11 @@ function App() {
 
         <ContainerFlexWidth widthPercent={20}>
           <Button
-            onClick={() => setTypeFormSelected('json')}
+            onClick={() => setTypeFormSelected("json")}
             style={{
-              width: '100%',
-              textTransform: 'none',
-              background: typeFormSelected === 'json' ? '#1976d2' : '#c4c4c4',
+              width: "100%",
+              textTransform: "none",
+              background: typeFormSelected === "json" ? "#1976d2" : "#c4c4c4",
             }}
             variant="contained"
           >

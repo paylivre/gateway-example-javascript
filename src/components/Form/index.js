@@ -59,6 +59,10 @@ function Form({
   const [checkDataSelectedType, setCheckDataSelectedType] = React.useState([]);
   const [pix_key_type, setPix_key_type] = React.useState(PixKeyTypes.document);
   const [pix_key, setPix_key] = React.useState("60712326006");
+  const [login_email, setLoginEmail] = React.useState(
+    "person_user_gateway@test.com"
+  );
+  const [password, setPassword] = React.useState("123123123");
 
   function setTypesChecked(typeKey, isChecked) {
     const newTypesCheckeds = { ...typesCheckeds, [typeKey]: isChecked };
@@ -99,6 +103,11 @@ function Form({
     enableCheckDataSelectedType();
   }, [typesCheckeds]);
 
+  const isDepositWallet =
+    typeFormSelected === "json" &&
+    operation === operation_deposit &&
+    selected_type === "5";
+
   useEffect(() => {
     const auto_approve = "1";
     // Toda vez que alterar algum dado no data
@@ -120,8 +129,10 @@ function Form({
         operation,
         merchant_transaction_id,
         redirect_url,
-        selected_type,
+        selected_type: type === "0" ? "" : selected_type,
         type,
+        login_email: isDepositWallet ? login_email : "",
+        password: isDepositWallet ? password : "",
         pix_key_type: isWithdraw ? pix_key_type : "",
         pix_key: isWithdraw ? pix_key : "",
       };
@@ -288,7 +299,7 @@ function Form({
           }
         />
       </ContainerCheckTypes>
-      {typeFormSelected === "json" && operation === operation_withdraw && (
+      {typeFormSelected === "json" && (
         <>
           <ContainerHeight height={15} />
           <RadioGroup
@@ -300,32 +311,57 @@ function Form({
         </>
       )}
 
-      {typeFormSelected === "json" && operation === operation_withdraw && (
-        <ContainerRow>
-          <ContainerFlexWidth widthPercent={48}>
-            <ContainerHeight height={25} />
-            <RadioGroup
-              defaultCheckedValue={pix_key_type}
-              setChecked={(value) => setPix_key_type(value)}
-              labelGroup="Pix Key Type"
-              checkData={[
-                { value: PixKeyTypes.document, label: "CPF/CNPJ" },
-                { value: PixKeyTypes.phone, label: "Phone" },
-                { value: PixKeyTypes.email, label: "Email" },
-              ]}
-            />
-          </ContainerFlexWidth>
-
-          <ContainerFlexWidth widthPercent={48}>
-            <ContainerHeight height={30} />
-            <Input
-              value={pix_key}
-              setValue={(value) => setPix_key(value)}
-              label="User Pix Key"
-            />
-          </ContainerFlexWidth>
-        </ContainerRow>
+      {isDepositWallet && (
+        <>
+          <ContainerHeight height={15} />
+          <ContainerRow>
+            <ContainerFlexWidth widthPercent={48}>
+              <Input
+                value={login_email}
+                setValue={(value) => setLoginEmail(value)}
+                label="Email Login Paylivre"
+              />
+              <ContainerHeight height={15} />
+            </ContainerFlexWidth>
+            <ContainerFlexWidth widthPercent={45}>
+              <Input
+                value={password}
+                setValue={(value) => setPassword(value)}
+                label="Password Login Paylivre"
+              />
+            </ContainerFlexWidth>
+          </ContainerRow>
+        </>
       )}
+
+      {typeFormSelected === "json" &&
+        operation === operation_withdraw &&
+        selected_type === "4" && (
+          <ContainerRow>
+            <ContainerFlexWidth widthPercent={48}>
+              <ContainerHeight height={25} />
+              <RadioGroup
+                defaultCheckedValue={pix_key_type}
+                setChecked={(value) => setPix_key_type(value)}
+                labelGroup="Pix Key Type"
+                checkData={[
+                  { value: PixKeyTypes.document, label: "CPF/CNPJ" },
+                  { value: PixKeyTypes.phone, label: "Phone" },
+                  { value: PixKeyTypes.email, label: "Email" },
+                ]}
+              />
+            </ContainerFlexWidth>
+
+            <ContainerFlexWidth widthPercent={48}>
+              <ContainerHeight height={30} />
+              <Input
+                value={pix_key}
+                setValue={(value) => setPix_key(value)}
+                label="User Pix Key"
+              />
+            </ContainerFlexWidth>
+          </ContainerRow>
+        )}
 
       <ContainerHeight height={15} />
       <Input
