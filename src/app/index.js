@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-expressions */
 import React from "react";
+import { useParams } from "react-router-dom";
 import Button from "@mui/material/Button";
 import Form from "../components/Form";
 import { getArgon2i } from "../services/argon2i";
@@ -11,6 +12,8 @@ import { ContainerRow, ContainerFlexWidth } from "../components/styles";
 import RequestJson from "../components/RequestJson";
 
 function App() {
+  const { environment } = useParams();
+
   const [base_url, setBaseUrl] = React.useState(
     "https://dev.gateway.paylivre.com"
   );
@@ -63,38 +66,40 @@ function App() {
 
   return (
     <>
-      {/* <ContainerRow style={{ justifyContent: "center" }}>
-        <ContainerFlexWidth
-          widthPercent={20}
-          style={{ marginRight: 20, marginBottom: 20 }}
-        >
-          <Button
-            onClick={() => setTypeFormSelected("url")}
-            style={{
-              width: "100%",
-              textTransform: "none",
-              background: typeFormSelected === "url" ? "#1976d2" : "#c4c4c4",
-            }}
-            variant="contained"
+      {environment === "paylivre_dev" && (
+        <ContainerRow style={{ justifyContent: "center" }}>
+          <ContainerFlexWidth
+            widthPercent={20}
+            style={{ marginRight: 20, marginBottom: 20 }}
           >
-            Selected Form to URL
-          </Button>
-        </ContainerFlexWidth>
+            <Button
+              onClick={() => setTypeFormSelected("url")}
+              style={{
+                width: "100%",
+                textTransform: "none",
+                background: typeFormSelected === "url" ? "#1976d2" : "#c4c4c4",
+              }}
+              variant="contained"
+            >
+              Selected Form to URL
+            </Button>
+          </ContainerFlexWidth>
 
-        <ContainerFlexWidth widthPercent={20}>
-          <Button
-            onClick={() => setTypeFormSelected("json")}
-            style={{
-              width: "100%",
-              textTransform: "none",
-              background: typeFormSelected === "json" ? "#1976d2" : "#c4c4c4",
-            }}
-            variant="contained"
-          >
-            Select Form to Request JSON
-          </Button>
-        </ContainerFlexWidth>
-      </ContainerRow> */}
+          <ContainerFlexWidth widthPercent={20}>
+            <Button
+              onClick={() => setTypeFormSelected("json")}
+              style={{
+                width: "100%",
+                textTransform: "none",
+                background: typeFormSelected === "json" ? "#1976d2" : "#c4c4c4",
+              }}
+              variant="contained"
+            >
+              Select Form to Request JSON
+            </Button>
+          </ContainerFlexWidth>
+        </ContainerRow>
+      )}
 
       <Container>
         <Form
