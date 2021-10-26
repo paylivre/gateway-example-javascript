@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "/gateway-example-react-js/static/css/main.e49da782.chunk.css",
-    "main.js": "/gateway-example-react-js/static/js/main.f53a967f.chunk.js",
-    "main.js.map": "/gateway-example-react-js/static/js/main.f53a967f.chunk.js.map",
-    "runtime-main.js": "/gateway-example-react-js/static/js/runtime-main.bda8972d.js",
-    "runtime-main.js.map": "/gateway-example-react-js/static/js/runtime-main.bda8972d.js.map",
-    "static/css/2.dc0e3eea.chunk.css": "/gateway-example-react-js/static/css/2.dc0e3eea.chunk.css",
-    "static/js/2.b0f188cd.chunk.js": "/gateway-example-react-js/static/js/2.b0f188cd.chunk.js",
-    "static/js/2.b0f188cd.chunk.js.map": "/gateway-example-react-js/static/js/2.b0f188cd.chunk.js.map",
-    "index.html": "/gateway-example-react-js/index.html",
-    "static/css/2.dc0e3eea.chunk.css.map": "/gateway-example-react-js/static/css/2.dc0e3eea.chunk.css.map",
-    "static/css/main.e49da782.chunk.css.map": "/gateway-example-react-js/static/css/main.e49da782.chunk.css.map",
-    "static/js/2.b0f188cd.chunk.js.LICENSE.txt": "/gateway-example-react-js/static/js/2.b0f188cd.chunk.js.LICENSE.txt",
-    "static/media/notifications.css": "/gateway-example-react-js/static/media/notification.c5d9251e.ttf"
+    "main.css": "/gateway-example-react-js/paylivre_dev/static/css/main.e49da782.chunk.css",
+    "main.js": "/gateway-example-react-js/paylivre_dev/static/js/main.f53a967f.chunk.js",
+    "main.js.map": "/gateway-example-react-js/paylivre_dev/static/js/main.f53a967f.chunk.js.map",
+    "runtime-main.js": "/gateway-example-react-js/paylivre_dev/static/js/runtime-main.7591d766.js",
+    "runtime-main.js.map": "/gateway-example-react-js/paylivre_dev/static/js/runtime-main.7591d766.js.map",
+    "static/css/2.036dc5ed.chunk.css": "/gateway-example-react-js/paylivre_dev/static/css/2.036dc5ed.chunk.css",
+    "static/js/2.037ae790.chunk.js": "/gateway-example-react-js/paylivre_dev/static/js/2.037ae790.chunk.js",
+    "static/js/2.037ae790.chunk.js.map": "/gateway-example-react-js/paylivre_dev/static/js/2.037ae790.chunk.js.map",
+    "index.html": "/gateway-example-react-js/paylivre_dev/index.html",
+    "static/css/2.036dc5ed.chunk.css.map": "/gateway-example-react-js/paylivre_dev/static/css/2.036dc5ed.chunk.css.map",
+    "static/css/main.e49da782.chunk.css.map": "/gateway-example-react-js/paylivre_dev/static/css/main.e49da782.chunk.css.map",
+    "static/js/2.037ae790.chunk.js.LICENSE.txt": "/gateway-example-react-js/paylivre_dev/static/js/2.037ae790.chunk.js.LICENSE.txt",
+    "static/media/notifications.css": "/gateway-example-react-js/paylivre_dev/static/media/notification.c5d9251e.ttf"
   },
   "entrypoints": [
-    "static/js/runtime-main.bda8972d.js",
-    "static/css/2.dc0e3eea.chunk.css",
-    "static/js/2.b0f188cd.chunk.js",
+    "static/js/runtime-main.7591d766.js",
+    "static/css/2.036dc5ed.chunk.css",
+    "static/js/2.037ae790.chunk.js",
     "static/css/main.e49da782.chunk.css",
     "static/js/main.f53a967f.chunk.js"
   ]
