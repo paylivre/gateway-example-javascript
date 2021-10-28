@@ -42,13 +42,14 @@ function App() {
     const mock_type = `type=${DataURL.type}`;
     const mock_auto_approve = `auto_approve=${DataURL.auto_approve}`;
     const Signature = signature ? `&signature=${signature}` : "";
+    const logoUrl = DataURL.logo_url ? `&logo_url=${DataURL.logo_url}` : "";
 
     const email = DataURL.email ? `&email=${DataURL.email}` : "";
     const document_number = DataURL.document_number
       ? `&document_number=${DataURL.document_number}`
       : "";
 
-    const UrlGateway = `${base_url}?${merchant_transaction_id}&${merchant_id}&${operation}${email}${document_number}&${amount}&${currency}&${mock_type}&${account_id}&${calback_url}&${redirect_url}&${mock_auto_approve}${Signature}`;
+    const UrlGateway = `${base_url}?${merchant_transaction_id}&${merchant_id}&${operation}${email}${document_number}&${amount}&${currency}&${mock_type}&${account_id}&${calback_url}&${redirect_url}&${mock_auto_approve}${Signature}${logoUrl}`;
 
     return UrlGateway;
   }

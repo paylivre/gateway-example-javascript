@@ -30,6 +30,8 @@ function Form({
   setBaseUrl,
   typeFormSelected,
 }) {
+  const logo_url_example =
+    "https://www.beyond2015.org/wp-content/uploads/2019/03/binomo-logo.png";
   const operation_deposit = "0";
   const operation_withdraw = "5";
   const [merchant_id, setMerchantId] = React.useState("19");
@@ -63,6 +65,7 @@ function Form({
     "person_user_gateway@test.com"
   );
   const [password, setPassword] = React.useState("123123123");
+  const [logo_url, setLogoUrl] = React.useState(logo_url_example);
 
   function setTypesChecked(typeKey, isChecked) {
     const newTypesCheckeds = { ...typesCheckeds, [typeKey]: isChecked };
@@ -135,6 +138,7 @@ function Form({
         password: isDepositWallet ? password : "",
         pix_key_type: isWithdraw ? pix_key_type : "",
         pix_key: isWithdraw ? pix_key : "",
+        logo_url,
       };
     });
   }, [
@@ -156,6 +160,7 @@ function Form({
     selected_type,
     pix_key_type,
     pix_key,
+    logo_url,
   ]);
 
   function handleReloadRandomFormtData() {
@@ -383,6 +388,13 @@ function Form({
         value={base_url}
         setValue={(value) => setBaseUrl(value)}
         label="Base URL"
+      />
+
+      <ContainerHeight height={15} />
+      <Input
+        value={logo_url}
+        setValue={(value) => setLogoUrl(value)}
+        label="Logo URL"
       />
     </Container>
   );
