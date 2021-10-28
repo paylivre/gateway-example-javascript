@@ -31,7 +31,7 @@ function Form({
   typeFormSelected,
 }) {
   const logo_url_example =
-    "https://www.beyond2015.org/wp-content/uploads/2019/03/binomo-logo.png";
+    "https://raw.githubusercontent.com/paylivre/gateway-example-react-js/master/assets/logo_jackpot.png";
   const operation_deposit = "0";
   const operation_withdraw = "5";
   const [merchant_id, setMerchantId] = React.useState("19");
@@ -220,7 +220,7 @@ function Form({
       <Input
         value={email}
         setValue={(value) => setEmail(value)}
-        label="User Email:"
+        label="User Email: (OPTIONAL)"
       />
       <ContainerHeight height={20} />
       <ContainerRow>
@@ -228,7 +228,7 @@ function Form({
           <Input
             value={document_number}
             setValue={(value) => setDocumentNumber(value)}
-            label="User Document Number (CPF/CNPJ):"
+            label="User Document Number - CPF/CNPJ: (OPTIONAL)"
           />
         </ContainerFlexWidth>
 
@@ -379,7 +379,7 @@ function Form({
       <Input
         value={redirect_url}
         setValue={(value) => setRedirect_url(value)}
-        label="Redirect URL:"
+        label="Redirect URL: (OPTIONAL)"
       />
 
       <ContainerHeight height={15} />
@@ -387,14 +387,14 @@ function Form({
       <Input
         value={base_url}
         setValue={(value) => setBaseUrl(value)}
-        label="Base URL"
+        label="Base URL:"
       />
 
       <ContainerHeight height={15} />
       <Input
         value={logo_url}
         setValue={(value) => setLogoUrl(value)}
-        label="Logo URL"
+        label="Logo URL: (OPTIONAL)"
       />
     </Container>
   );
