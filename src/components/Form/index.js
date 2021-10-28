@@ -31,7 +31,7 @@ function Form({
   typeFormSelected,
 }) {
   const logo_url_example =
-    "https://raw.githubusercontent.com/paylivre/gateway-example-react-js/master/assets/logo_jackpot.png";
+    "https://raw.githubusercontent.com/paylivre/gateway-example-react-js/531efa528867022859ee579fce7567038bf1c190/assets/logo_jackpot.svg";
   const operation_deposit = "0";
   const operation_withdraw = "5";
   const [merchant_id, setMerchantId] = React.useState("19");
