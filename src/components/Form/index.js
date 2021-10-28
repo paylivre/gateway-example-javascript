@@ -228,7 +228,7 @@ function Form({
           <Input
             value={document_number}
             setValue={(value) => setDocumentNumber(value)}
-            label="User Document Number - CPF/CNPJ: (OPTIONAL)"
+            label="User Document - CPF/CNPJ: (OPTIONAL)"
           />
         </ContainerFlexWidth>
 
