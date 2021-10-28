@@ -101,6 +101,7 @@ function Form({
           label: "Paylivre Wallet",
         });
       }
+
       setCheckDataSelectedType(newCheckDataSelectedType);
     }
     enableCheckDataSelectedType();
@@ -118,6 +119,20 @@ function Form({
 
     const isWithdraw = operation === operation_withdraw;
 
+    function getType() {
+      if (operation === operation_withdraw) {
+        const typeNumber = Number(type);
+        if (Number.isNaN(typeNumber)) {
+          return "0";
+        }
+        if (typeNumber > 1) {
+          return "1";
+        }
+        return type;
+      }
+      return type;
+    }
+
     setData((oldData) => {
       return {
         ...oldData,
@@ -133,7 +148,7 @@ function Form({
         merchant_transaction_id,
         redirect_url,
         selected_type: type === "0" ? "" : selected_type,
-        type,
+        type: getType(),
         login_email: isDepositWallet ? login_email : "",
         password: isDepositWallet ? password : "",
         pix_key_type: isWithdraw ? pix_key_type : "",
@@ -282,27 +297,31 @@ function Form({
           isChecked={typesCheckeds[typesList.PIX]}
           setChecked={(isChecked) => setTypesChecked(typesList.PIX, isChecked)}
         />
-        <Checkbox
-          label="Billet"
-          isChecked={typesCheckeds[typesList.BILLET]}
-          setChecked={(isChecked) =>
-            setTypesChecked(typesList.BILLET, isChecked)
-          }
-        />
-        <Checkbox
-          label="Wire Transfer"
-          isChecked={typesCheckeds[typesList.WIRETRANFER]}
-          setChecked={(isChecked) =>
-            setTypesChecked(typesList.WIRETRANFER, isChecked)
-          }
-        />
-        <Checkbox
-          label="Paylivre Wallet"
-          isChecked={typesCheckeds[typesList.WALLET]}
-          setChecked={(isChecked) =>
-            setTypesChecked(typesList.WALLET, isChecked)
-          }
-        />
+        {operation === operation_deposit && (
+          <>
+            <Checkbox
+              label="Billet"
+              isChecked={typesCheckeds[typesList.BILLET]}
+              setChecked={(isChecked) =>
+                setTypesChecked(typesList.BILLET, isChecked)
+              }
+            />
+            <Checkbox
+              label="Wire Transfer"
+              isChecked={typesCheckeds[typesList.WIRETRANFER]}
+              setChecked={(isChecked) =>
+                setTypesChecked(typesList.WIRETRANFER, isChecked)
+              }
+            />
+            <Checkbox
+              label="Paylivre Wallet"
+              isChecked={typesCheckeds[typesList.WALLET]}
+              setChecked={(isChecked) =>
+                setTypesChecked(typesList.WALLET, isChecked)
+              }
+            />
+          </>
+        )}
       </ContainerCheckTypes>
       {typeFormSelected === "json" && (
         <>
