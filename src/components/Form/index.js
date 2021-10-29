@@ -45,7 +45,7 @@ function Form({
   const [operation, setOperation] = React.useState(operation_deposit);
   const [amount, setAmount] = React.useState("500");
   const [callback_url, setcCallback_url] = React.useState(
-    "https://www.merchant.com"
+    "https://www.google.com"
   );
   const [redirect_url, setRedirect_url] = React.useState(
     "https://www.merchant_to_you.com"
