@@ -1,10 +1,11 @@
 /* eslint-disable no-unused-expressions */
 import React from "react";
-import { useParams, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import Button from "@mui/material/Button";
 import Form from "../components/Form";
 import { getArgon2i } from "../services/argon2i";
 import { utf8_to_b64 } from "../utils/base64";
+import { DataDefaultDev, DataDefaultPlayground } from "../data/formDataDefault";
 import { Container, ContainerResult } from "./styles";
 
 import { ContainerRow, ContainerFlexWidth } from "../components/styles";
@@ -16,15 +17,20 @@ function useQuery() {
 }
 
 function App() {
-  const { environment } = useParams();
   const query = useQuery();
   const isDev = query.get("dev") === "1";
+  const isDevPlayground = query.get("playground") === "1";
+  const dataDefault = !isDev
+    ? DataDefaultPlayground
+    : isDevPlayground
+    ? DataDefaultPlayground
+    : DataDefaultDev;
 
-  const [base_url, setBaseUrl] = React.useState(
-    "https://dev.gateway.paylivre.com"
-  );
+  const [base_url, setBaseUrl] = React.useState(dataDefault.base_url);
   const [data, setData] = React.useState({});
-  const [gateway_token, setGateway_token] = React.useState("teste");
+  const [gateway_token, setGateway_token] = React.useState(
+    dataDefault.gateway_token
+  );
   const [urlGenerated, setUrlGenerated] = React.useState(false);
   const [url, setURL] = React.useState("");
   const [urlGateway, setUrlGateway] = React.useState("");
@@ -71,8 +77,6 @@ function App() {
     setUrlGenerated(true);
   }
 
-  console.log({ environment });
-
   return (
     <>
       {isDev && (
@@ -112,6 +116,7 @@ function App() {
 
       <Container>
         <Form
+          dataDefault={dataDefault}
           base_url={base_url}
           setBaseUrl={setBaseUrl}
           gateway_token={gateway_token}

@@ -29,18 +29,19 @@ function Form({
   base_url,
   setBaseUrl,
   typeFormSelected,
+  dataDefault,
 }) {
   const logo_url_example =
     "https://raw.githubusercontent.com/paylivre/gateway-example-react-js/531efa528867022859ee579fce7567038bf1c190/assets/logo_jackpot.svg";
   const operation_deposit = "0";
   const operation_withdraw = "5";
-  const [merchant_id, setMerchantId] = React.useState("19");
+  const [merchant_id, setMerchantId] = React.useState(dataDefault.merchant_id);
   const [merchant_transaction_id, setMerchantTransactionId] = React.useState(
     getRandomMerchantTransactionId()
   );
   const [email, setEmail] = React.useState("person_user_gateway@test.com");
   const [document_number, setDocumentNumber] = React.useState("60712326006");
-  const [account_id, setAccountId] = React.useState(getRandomUserAccountId());
+  const [account_id, setAccountId] = React.useState("123654asd");
   const [currency, setCurrency] = React.useState("BRL");
   const [operation, setOperation] = React.useState(operation_deposit);
   const [amount, setAmount] = React.useState("500");
