@@ -7,11 +7,17 @@ import {
   NotificationContainer,
   NotificationManager,
 } from "react-notifications";
-import Button from "@mui/material/Button";
+
 import JSONPretty from "react-json-pretty";
 import "./jsonStyle.css";
-import { Container, PColor, FormLabelCustom } from "./styles";
-import { ContainerRow, ContainerFlexWidth } from "../styles";
+import {
+  Container,
+  PColor,
+  FormLabelCustom,
+  ContainerFlexWidthCustom,
+  CustomButton,
+} from "./styles";
+import { ContainerRow } from "../styles";
 
 function RequestJson({
   dataRequest,
@@ -49,25 +55,25 @@ function RequestJson({
       <ContainerRow
         style={{ alignItems: "center", paddingTop: 10, marginBottom: 10 }}
       >
-        <ContainerFlexWidth widthPercent={50}>
+        <ContainerFlexWidthCustom widthPercent={50}>
           <FormLabelCustom>{label}</FormLabelCustom>
-        </ContainerFlexWidth>
-        <ContainerFlexWidth widthPercent={50}>
-          <Button
+        </ContainerFlexWidthCustom>
+        <ContainerFlexWidthCustom widthPercent={50}>
+          <CustomButton
             endIcon={<IconButtonMain />}
             onClick={() => handleButtonAction()}
             style={{ width: "100%", textTransform: "none" }}
             variant="contained"
           >
             {textButton}
-          </Button>
-        </ContainerFlexWidth>
+          </CustomButton>
+        </ContainerFlexWidthCustom>
         {type === "url" && (
-          <ContainerFlexWidth
+          <ContainerFlexWidthCustom
             widthPercent={50}
             style={{ marginLeft: 20, maxWidth: 140 }}
           >
-            <Button
+            <CustomButton
               endIcon={<ContentCopyIcon />}
               onClick={() => handleCopyToClipboard()}
               style={{
@@ -78,8 +84,8 @@ function RequestJson({
               variant="outlined"
             >
               Copy URL
-            </Button>
-          </ContainerFlexWidth>
+            </CustomButton>
+          </ContainerFlexWidthCustom>
         )}
       </ContainerRow>
 

@@ -6,9 +6,10 @@ import {
   FormLabelCustom,
   ContainerHeight,
   ContainerCheckTypes,
+  ContainerFlexWidthCustom,
 } from "./styles";
 
-import { ContainerRow, ContainerFlexWidth } from "../styles";
+import { ContainerRow } from "../styles";
 
 import Input from "../Input";
 import RadioGroup from "../RadioGroup";
@@ -16,10 +17,7 @@ import Checkbox from "../CheckBox";
 import { typesList, getTypeInteger } from "../../utils/typesUtils";
 import { PixKeyTypes } from "../../utils/pixKeyTypes";
 
-import {
-  getRandomMerchantTransactionId,
-  getRandomUserAccountId,
-} from "../../utils/generatePropsRandom";
+import { getRandomMerchantTransactionId } from "../../utils/generatePropsRandom";
 
 function Form({
   setData,
@@ -181,7 +179,6 @@ function Form({
 
   function handleReloadRandomFormtData() {
     setMerchantTransactionId(getRandomMerchantTransactionId());
-    setAccountId(getRandomUserAccountId());
   }
 
   return (
@@ -189,12 +186,12 @@ function Form({
       <ContainerRow
         style={{ marginBottom: 20, height: 50, alignItems: "center" }}
       >
-        <ContainerFlexWidth widthPercent={48}>
+        <ContainerFlexWidthCustom widthPercent={48}>
           <FormLabelCustom style={{ margin: 0 }}>
             Merchant Data:
           </FormLabelCustom>
-        </ContainerFlexWidth>
-        <ContainerFlexWidth widthPercent={50} style={{}}>
+        </ContainerFlexWidthCustom>
+        <ContainerFlexWidthCustom widthPercent={50} style={{}}>
           <Button
             onClick={() => handleReloadRandomFormtData()}
             style={{
@@ -205,24 +202,24 @@ function Form({
           >
             Reload Random Data
           </Button>
-        </ContainerFlexWidth>
+        </ContainerFlexWidthCustom>
       </ContainerRow>
       <ContainerRow>
-        <ContainerFlexWidth widthPercent={48}>
+        <ContainerFlexWidthCustom widthPercent={48}>
           <Input
             value={merchant_id}
             setValue={(value) => setMerchantId(value)}
             label="Merchant ID:"
           />
           <ContainerHeight height={15} />
-        </ContainerFlexWidth>
-        <ContainerFlexWidth widthPercent={45}>
+        </ContainerFlexWidthCustom>
+        <ContainerFlexWidthCustom widthPercent={45}>
           <Input
             value={merchant_transaction_id}
             setValue={(value) => setMerchantTransactionId(value)}
             label="Merchant Transaction ID:"
           />
-        </ContainerFlexWidth>
+        </ContainerFlexWidthCustom>
       </ContainerRow>
 
       <ContainerHeight height={5} />
@@ -240,34 +237,36 @@ function Form({
       />
       <ContainerHeight height={20} />
       <ContainerRow>
-        <ContainerFlexWidth widthPercent={48}>
+        <ContainerFlexWidthCustom widthPercent={48}>
           <Input
             value={document_number}
             setValue={(value) => setDocumentNumber(value)}
             label="User Document - CPF/CNPJ: (OPTIONAL)"
           />
-        </ContainerFlexWidth>
+        </ContainerFlexWidthCustom>
 
-        <ContainerFlexWidth widthPercent={48}>
+        <ContainerFlexWidthCustom widthPercent={48}>
           <Input
             value={account_id}
             setValue={(value) => setAccountId(value)}
             label="User Account ID in Merchant:"
           />
-        </ContainerFlexWidth>
+        </ContainerFlexWidthCustom>
       </ContainerRow>
 
       <FormLabelCustom>Transaction Data:</FormLabelCustom>
       <ContainerRow>
-        <ContainerFlexWidth widthPercent={48}>
+        <ContainerFlexWidthCustom widthPercent={48}>
           <Input
             value={amount}
             setValue={(value) => setAmount(value)}
             label="Amount:"
           />
-        </ContainerFlexWidth>
+        </ContainerFlexWidthCustom>
 
-        <ContainerFlexWidth widthPercent={48}>
+        <ContainerHeight height={15} />
+
+        <ContainerFlexWidthCustom widthPercent={48}>
           <RadioGroup
             defaultCheckedValue={currency}
             setChecked={(value) => setCurrency(value)}
@@ -277,7 +276,7 @@ function Form({
               { value: "USD", label: "USD" },
             ]}
           />
-        </ContainerFlexWidth>
+        </ContainerFlexWidthCustom>
       </ContainerRow>
 
       <ContainerHeight height={15} />
@@ -340,21 +339,21 @@ function Form({
         <>
           <ContainerHeight height={15} />
           <ContainerRow>
-            <ContainerFlexWidth widthPercent={48}>
+            <ContainerFlexWidthCustom widthPercent={48}>
               <Input
                 value={login_email}
                 setValue={(value) => setLoginEmail(value)}
                 label="Email Login Paylivre"
               />
               <ContainerHeight height={15} />
-            </ContainerFlexWidth>
-            <ContainerFlexWidth widthPercent={45}>
+            </ContainerFlexWidthCustom>
+            <ContainerFlexWidthCustom widthPercent={45}>
               <Input
                 value={password}
                 setValue={(value) => setPassword(value)}
                 label="Password Login Paylivre"
               />
-            </ContainerFlexWidth>
+            </ContainerFlexWidthCustom>
           </ContainerRow>
         </>
       )}
@@ -363,7 +362,7 @@ function Form({
         operation === operation_withdraw &&
         selected_type === "4" && (
           <ContainerRow>
-            <ContainerFlexWidth widthPercent={48}>
+            <ContainerFlexWidthCustom widthPercent={48}>
               <ContainerHeight height={25} />
               <RadioGroup
                 defaultCheckedValue={pix_key_type}
@@ -375,16 +374,16 @@ function Form({
                   { value: PixKeyTypes.email, label: "Email" },
                 ]}
               />
-            </ContainerFlexWidth>
+            </ContainerFlexWidthCustom>
 
-            <ContainerFlexWidth widthPercent={48}>
+            <ContainerFlexWidthCustom widthPercent={48}>
               <ContainerHeight height={30} />
               <Input
                 value={pix_key}
                 setValue={(value) => setPix_key(value)}
                 label="User Pix Key"
               />
-            </ContainerFlexWidth>
+            </ContainerFlexWidthCustom>
           </ContainerRow>
         )}
 

@@ -1,14 +1,18 @@
 /* eslint-disable no-unused-expressions */
 import React from "react";
 import { useLocation } from "react-router-dom";
-import Button from "@mui/material/Button";
 import Form from "../components/Form";
 import { getArgon2i } from "../services/argon2i";
 import { utf8_to_b64 } from "../utils/base64";
 import { DataDefaultDev, DataDefaultPlayground } from "../data/formDataDefault";
-import { Container, ContainerResult } from "./styles";
+import {
+  Container,
+  ContainerResult,
+  CustomButton,
+  ContainerFlexWidthCustom,
+} from "./styles";
 
-import { ContainerRow, ContainerFlexWidth } from "../components/styles";
+import { ContainerRow } from "../components/styles";
 
 import RequestJson from "../components/RequestJson";
 
@@ -81,11 +85,11 @@ function App() {
     <>
       {isDev && (
         <ContainerRow style={{ justifyContent: "center" }}>
-          <ContainerFlexWidth
+          <ContainerFlexWidthCustom
             widthPercent={20}
             style={{ marginRight: 20, marginBottom: 20 }}
           >
-            <Button
+            <CustomButton
               onClick={() => setTypeFormSelected("url")}
               style={{
                 width: "100%",
@@ -95,11 +99,11 @@ function App() {
               variant="contained"
             >
               Selected Form to URL
-            </Button>
-          </ContainerFlexWidth>
+            </CustomButton>
+          </ContainerFlexWidthCustom>
 
-          <ContainerFlexWidth widthPercent={20}>
-            <Button
+          <ContainerFlexWidthCustom widthPercent={20}>
+            <CustomButton
               onClick={() => setTypeFormSelected("json")}
               style={{
                 width: "100%",
@@ -109,8 +113,8 @@ function App() {
               variant="contained"
             >
               Select Form to Request JSON
-            </Button>
-          </ContainerFlexWidth>
+            </CustomButton>
+          </ContainerFlexWidthCustom>
         </ContainerRow>
       )}
 
@@ -152,14 +156,19 @@ function App() {
               )}
             </>
           )}
-          <Button
+          <CustomButton
             size="large"
             onClick={() => handleGenerateSignature()}
-            style={{ width: "100%", textTransform: "none" }}
+            style={{
+              width: "100%",
+              textTransform: "none",
+              minWidth: "100%",
+              marginRight: 0,
+            }}
             variant="contained"
           >
             {`Generate ${typeFormSelected.toUpperCase()}`}
-          </Button>
+          </CustomButton>
         </ContainerResult>
       </Container>
     </>
