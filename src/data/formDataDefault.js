@@ -1,6 +1,6 @@
 export const DataDefaultDev = {
   base_url: "https://dev.gateway.paylivre.com",
-  gateway_token: "q1aUW4KuyOcAUJdvWS4K1xuwU2k27KXu",
+  gateway_token: "hr1xwd5sBOy9olYC3PCWxHNybA8v65Mq",
   merchant_id: "19",
   merchant_transaction_id: "",
   email: "person_user_gateway@test.com",
