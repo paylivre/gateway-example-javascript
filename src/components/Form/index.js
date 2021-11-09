@@ -37,8 +37,10 @@ function Form({
   const [merchant_transaction_id, setMerchantTransactionId] = React.useState(
     getRandomMerchantTransactionId()
   );
-  const [email, setEmail] = React.useState("person_user_gateway@test.com");
-  const [document_number, setDocumentNumber] = React.useState("60712326006");
+  const [email, setEmail] = React.useState(dataDefault.email);
+  const [document_number, setDocumentNumber] = React.useState(
+    dataDefault.document_number
+  );
   const [account_id, setAccountId] = React.useState("123654asd");
   const [currency, setCurrency] = React.useState("BRL");
   const [operation, setOperation] = React.useState(operation_deposit);
@@ -59,10 +61,8 @@ function Form({
   const [selected_type, setSelected_type] = React.useState("4");
   const [checkDataSelectedType, setCheckDataSelectedType] = React.useState([]);
   const [pix_key_type, setPix_key_type] = React.useState(PixKeyTypes.document);
-  const [pix_key, setPix_key] = React.useState("60712326006");
-  const [login_email, setLoginEmail] = React.useState(
-    "person_user_gateway@test.com"
-  );
+  const [pix_key, setPix_key] = React.useState(dataDefault.document_number);
+  const [login_email, setLoginEmail] = React.useState(dataDefault.email);
   const [password, setPassword] = React.useState("123123123");
   const [logo_url, setLogoUrl] = React.useState(logo_url_example);
 

@@ -1,17 +1,17 @@
 export const DataDefaultDev = {
   base_url: "https://dev.gateway.paylivre.com",
-  gateway_token: "hr1xwd5sBOy9olYC3PCWxHNybA8v65Mq",
-  merchant_id: "19",
+  gateway_token: "UdXN2e33r3xlldm1UJSXGR5mslv9HeWP",
+  merchant_id: "302",
   merchant_transaction_id: "",
-  email: "person_user_gateway@test.com",
-  document_number: "60712326006",
+  email: "user_gateway_test@tutanota.com",
+  document_number: "61317581075",
 };
 
 export const DataDefaultPlayground = {
   base_url: "https://playground.gateway.paylivre.com",
-  gateway_token: "2eWC24I78sCxhPn3AkO9naGQKBePiBYu",
-  merchant_id: "1287",
+  gateway_token: "61JYJheAFL7OCefS8hhmEDesCcUyQPMk",
+  merchant_id: "1508",
   merchant_transaction_id: "",
-  email: "person_user_gateway@test.com",
-  document_number: "60712326006",
+  email: "user_gateway_test@tutanota.com",
+  document_number: "61317581075",
 };
