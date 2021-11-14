@@ -38,7 +38,7 @@
     "lint": "eslint ./",
     "lintFix": "eslint ./ --fix"
   },
-  "homepage": "https://paylivre.github.io/gateway-example-react-js",
+  "homepage": "https://paylivre.github.io/gateway-example-javascript",
   "eslintConfig": {
     "extends": [
       "react-app",
