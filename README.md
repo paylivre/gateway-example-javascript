@@ -4,7 +4,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Page Example Form Gateway
 
-link: https://paylivre.github.io/gateway-example-react-js
+link: https://paylivre.github.io/gateway-example-javascript
 
 ## Available Scripts
 
