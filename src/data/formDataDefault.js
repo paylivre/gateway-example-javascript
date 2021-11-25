@@ -9,7 +9,7 @@ export const DataDefaultDev = {
 
 export const DataDefaultPlayground = {
   base_url: "https://playground.gateway.paylivre.com",
-  gateway_token: "61JYJheAFL7OCefS8hhmEDesCcUyQPMk",
+  gateway_token: "0c85yWaiBWx1Mclvink7suWrHoEQnH8Q",
   merchant_id: "1508",
   merchant_transaction_id: "",
   email: "user_gateway_test@tutanota.com",
