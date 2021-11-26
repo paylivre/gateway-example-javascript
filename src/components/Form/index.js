@@ -177,7 +177,7 @@ function Form({
     logo_url,
   ]);
 
-  function handleReloadRandomFormtData() {
+  function handleReloadRandomFormatData() {
     setMerchantTransactionId(getRandomMerchantTransactionId());
   }
 
@@ -193,7 +193,7 @@ function Form({
         </ContainerFlexWidthCustom>
         <ContainerFlexWidthCustom widthPercent={50} style={{}}>
           <Button
-            onClick={() => handleReloadRandomFormtData()}
+            onClick={() => handleReloadRandomFormatData()}
             style={{
               width: "100%",
               textTransform: "none",
