@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 import "react-notifications/lib/notifications.css";
@@ -28,12 +28,17 @@ function RequestJson({
   type,
   ...rest
 }) {
+  const [disable, setDisable] = useState(false);
+
   function handleCopyToClipboard() {
-    const dataRequestJson = JSON.stringify({ ...dataRequest, url });
-    const textToCopy = type === "url" ? urlGateway : dataRequestJson;
-    copyToClipboard(textToCopy);
-    const textToNotification = type === "url" ? "Copied URL" : "JSON Copied";
-    NotificationManager.success(textToNotification, "", 1000);
+    if (!disable) {
+      const dataRequestJson = JSON.stringify({ ...dataRequest, url });
+      const textToCopy = type === "url" ? urlGateway : dataRequestJson;
+      copyToClipboard(textToCopy);
+      const textToNotification = type === "url" ? "Copied URL" : "JSON Copied";
+      NotificationManager.success(textToNotification, "", 1000);
+      setDisable(true);
+    }
   }
 
   const IconButtonMain = type === "url" ? OpenInNewIcon : ContentCopyIcon;
@@ -74,6 +79,7 @@ function RequestJson({
             style={{ marginLeft: 20, maxWidth: 140 }}
           >
             <CustomButton
+              disabled={disable}
               endIcon={<ContentCopyIcon />}
               onClick={() => handleCopyToClipboard()}
               style={{
