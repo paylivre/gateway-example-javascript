@@ -44,7 +44,10 @@ function RequestJson({
   const IconButtonMain = type === "url" ? OpenInNewIcon : ContentCopyIcon;
 
   function handleOpenUrlNewWindow() {
-    window.open(urlGateway);
+    if (!disable) {
+      window.open(urlGateway);
+      setDisable(true);
+    }
   }
 
   function handleButtonAction() {
@@ -65,6 +68,7 @@ function RequestJson({
         </ContainerFlexWidthCustom>
         <ContainerFlexWidthCustom widthPercent={50}>
           <CustomButton
+            disabled={disable}
             endIcon={<IconButtonMain />}
             onClick={() => handleButtonAction()}
             style={{ width: "100%", textTransform: "none" }}
