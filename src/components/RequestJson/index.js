@@ -19,6 +19,8 @@ import {
 } from "./styles";
 import { ContainerRow } from "../styles";
 
+import { useForceReloadData } from "../../contexts/ForceReloadData";
+
 function RequestJson({
   dataRequest,
   url,
@@ -28,7 +30,9 @@ function RequestJson({
   type,
   ...rest
 }) {
-  const [disable, setDisable] = useState(false);
+  const { disable, setDisable } = useForceReloadData();
+
+  console.log(disable);
 
   function handleCopyToClipboard() {
     if (!disable) {
