@@ -181,8 +181,6 @@ function Form({
     logo_url,
   ]);
 
-  console.log(disable, setDisable);
-
   function handleReloadRandomFormatData() {
     setMerchantTransactionId(getRandomMerchantTransactionId());
     setDisable(false);

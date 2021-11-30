@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 import "react-notifications/lib/notifications.css";
@@ -31,8 +31,6 @@ function RequestJson({
   ...rest
 }) {
   const { disable, setDisable } = useForceReloadData();
-
-  console.log(disable);
 
   function handleCopyToClipboard() {
     if (!disable) {
