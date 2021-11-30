@@ -19,6 +19,8 @@ import { PixKeyTypes } from "../../utils/pixKeyTypes";
 
 import { getRandomMerchantTransactionId } from "../../utils/generatePropsRandom";
 
+import { useForceReloadData } from "../../contexts/ForceReloadData";
+
 function Form({
   setData,
   setGateway_token,
@@ -65,6 +67,8 @@ function Form({
   const [login_email, setLoginEmail] = React.useState(dataDefault.email);
   const [password, setPassword] = React.useState("123123123");
   const [logo_url, setLogoUrl] = React.useState(logo_url_example);
+
+  const { disable, setDisable } = useForceReloadData();
 
   function setTypesChecked(typeKey, isChecked) {
     const newTypesCheckeds = { ...typesCheckeds, [typeKey]: isChecked };
@@ -177,8 +181,11 @@ function Form({
     logo_url,
   ]);
 
+  console.log(disable, setDisable);
+
   function handleReloadRandomFormatData() {
     setMerchantTransactionId(getRandomMerchantTransactionId());
+    setDisable(false);
   }
 
   return (
@@ -198,7 +205,8 @@ function Form({
               width: "100%",
               textTransform: "none",
             }}
-            variant="outlined"
+            variant={disable === true ? "contained" : "outlined"}
+            color="success"
           >
             Reload Random Data
           </Button>

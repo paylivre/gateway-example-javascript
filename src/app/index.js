@@ -16,6 +16,8 @@ import { ContainerRow } from "../components/styles";
 
 import RequestJson from "../components/RequestJson";
 
+import ForceReloadDataProvider from "../contexts/ForceReloadData";
+
 function useQuery() {
   return new URLSearchParams(useLocation().search);
 }
@@ -117,60 +119,61 @@ function App() {
           </ContainerFlexWidthCustom>
         </ContainerRow>
       )}
+      <ForceReloadDataProvider>
+        <Container>
+          <Form
+            dataDefault={dataDefault}
+            base_url={base_url}
+            setBaseUrl={setBaseUrl}
+            gateway_token={gateway_token}
+            setGateway_token={setGateway_token}
+            data={data}
+            setUrlGenerated={setUrlGenerated}
+            handleGenerateURL={() => handleGenerateSignature()}
+            setData={setData}
+            typeFormSelected={typeFormSelected}
+          />
+          <ContainerResult>
+            {urlGenerated && (
+              <>
+                {typeFormSelected === "url" && (
+                  <RequestJson
+                    type={typeFormSelected}
+                    style={{ marginBottom: 20 }}
+                    urlGateway={urlGateway}
+                    label="URL to Gateway Web:"
+                    textButton="Open URL Gateway"
+                  />
+                )}
 
-      <Container>
-        <Form
-          dataDefault={dataDefault}
-          base_url={base_url}
-          setBaseUrl={setBaseUrl}
-          gateway_token={gateway_token}
-          setGateway_token={setGateway_token}
-          data={data}
-          setUrlGenerated={setUrlGenerated}
-          handleGenerateURL={() => handleGenerateSignature()}
-          setData={setData}
-          typeFormSelected={typeFormSelected}
-        />
-        <ContainerResult>
-          {urlGenerated && (
-            <>
-              {typeFormSelected === "url" && (
-                <RequestJson
-                  type={typeFormSelected}
-                  style={{ marginBottom: 20 }}
-                  urlGateway={urlGateway}
-                  label="URL to Gateway Web:"
-                  textButton="Open URL Gateway"
-                />
-              )}
-
-              {typeFormSelected === "json" && (
-                <RequestJson
-                  type={typeFormSelected}
-                  style={{ marginBottom: 20 }}
-                  dataRequest={data}
-                  url={url}
-                  label="JSON Post Request:"
-                  textButton="Copy JSON"
-                />
-              )}
-            </>
-          )}
-          <CustomButton
-            size="large"
-            onClick={() => handleGenerateSignature()}
-            style={{
-              width: "100%",
-              textTransform: "none",
-              minWidth: "100%",
-              marginRight: 0,
-            }}
-            variant="contained"
-          >
-            {`Generate ${typeFormSelected.toUpperCase()}`}
-          </CustomButton>
-        </ContainerResult>
-      </Container>
+                {typeFormSelected === "json" && (
+                  <RequestJson
+                    type={typeFormSelected}
+                    style={{ marginBottom: 20 }}
+                    dataRequest={data}
+                    url={url}
+                    label="JSON Post Request:"
+                    textButton="Copy JSON"
+                  />
+                )}
+              </>
+            )}
+            <CustomButton
+              size="large"
+              onClick={() => handleGenerateSignature()}
+              style={{
+                width: "100%",
+                textTransform: "none",
+                minWidth: "100%",
+                marginRight: 0,
+              }}
+              variant="contained"
+            >
+              {`Generate ${typeFormSelected.toUpperCase()}`}
+            </CustomButton>
+          </ContainerResult>
+        </Container>
+      </ForceReloadDataProvider>
     </>
   );
 }
