@@ -19,7 +19,7 @@ import {
 } from "./styles";
 import { ContainerRow } from "../styles";
 
-import { useForceReloadData } from "../../contexts/ForceReloadData";
+import { useForceReloadData } from "../../contexts/forceReloadData";
 
 function RequestJson({
   dataRequest,

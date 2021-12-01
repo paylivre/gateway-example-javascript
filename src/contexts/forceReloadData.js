@@ -4,15 +4,12 @@ export const ForceReloadDataContext = createContext();
 
 export default function ForceReloadDataProvider({ children }) {
   const [disable, setDisable] = useState(false);
-  //   const [highlightReload, setHighlightReload] = useState();
 
   return (
     <ForceReloadDataContext.Provider
       value={{
         disable,
         setDisable,
-        // highlightReload,
-        // setHighlightReload,
       }}
     >
       {children}
