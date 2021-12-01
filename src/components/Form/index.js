@@ -19,7 +19,7 @@ import { PixKeyTypes } from "../../utils/pixKeyTypes";
 
 import { getRandomMerchantTransactionId } from "../../utils/generatePropsRandom";
 
-import { useForceReloadData } from "../../contexts/ForceReloadData";
+import { useForceReloadData } from "../../contexts/forceReloadData";
 
 function Form({
   setData,
