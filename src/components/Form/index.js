@@ -119,6 +119,7 @@ function Form({
     const auto_approve = "1";
     // Toda vez que alterar algum dado no data
     setUrlGenerated(false);
+    setDisable(false);
 
     const isWithdraw = operation === operation_withdraw;
 
