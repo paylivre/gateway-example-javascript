@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import Button from "@mui/material/Button";
 import FormLabel from "@mui/material/FormLabel";
+import { Typography } from "@mui/material";
 import {
   Container,
   FormLabelCustom,
@@ -189,6 +190,18 @@ function Form({
     setDisable(false);
   }
 
+  function isAutoApproveSelected() {
+    return auto_approve ? (
+      <Typography component="span" color="primary">
+        true
+      </Typography>
+    ) : (
+      <Typography component="span" color="error">
+        false
+      </Typography>
+    );
+  }
+
   return (
     <Container>
       <ContainerRow
@@ -265,7 +278,7 @@ function Form({
 
       <FormLabelCustom>Transaction Data:</FormLabelCustom>
       <ContainerRow>
-        <ContainerFlexWidthCustom widthPercent={48}>
+        <ContainerFlexWidthCustom widthPercent={50}>
           <Input
             value={amount}
             setValue={(value) => setAmount(value)}
@@ -273,14 +286,15 @@ function Form({
           />
         </ContainerFlexWidthCustom>
         <ContainerHeight height={15} />
-        <ContainerFlexWidthCustom widthPercent={48}>
+        <ContainerFlexWidthCustom widthPercent={60}>
           <InputSwitch
             label="Auto approve"
             checked={auto_approve}
             onChange={(event) => setAuto_approve(event.target.checked ? 1 : 0)}
           />
+          {isAutoApproveSelected()}
         </ContainerFlexWidthCustom>
-        <ContainerFlexWidthCustom widthPercent={48}>
+        <ContainerFlexWidthCustom widthPercent={60}>
           <RadioGroup
             defaultCheckedValue={currency}
             setChecked={(value) => setCurrency(value)}
