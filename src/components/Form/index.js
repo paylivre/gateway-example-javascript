@@ -20,6 +20,7 @@ import { PixKeyTypes } from "../../utils/pixKeyTypes";
 import { getRandomMerchantTransactionId } from "../../utils/generatePropsRandom";
 
 import { useForceReloadData } from "../../contexts/forceReloadData";
+import InputSwitch from "../Switch";
 
 function Form({
   setData,
@@ -67,6 +68,7 @@ function Form({
   const [login_email, setLoginEmail] = React.useState(dataDefault.email);
   const [password, setPassword] = React.useState("123123123");
   const [logo_url, setLogoUrl] = React.useState(logo_url_example);
+  const [auto_approve, setAuto_approve] = React.useState("1");
 
   const { disable, setDisable } = useForceReloadData();
 
@@ -116,7 +118,6 @@ function Form({
     selected_type === "5";
 
   useEffect(() => {
-    const auto_approve = "1";
     // Toda vez que alterar algum dado no data
     setUrlGenerated(false);
     setDisable(false);
@@ -167,6 +168,7 @@ function Form({
     email,
     document_number,
     account_id,
+    auto_approve,
     currency,
     operation,
     amount,
@@ -270,9 +272,14 @@ function Form({
             label="Amount:"
           />
         </ContainerFlexWidthCustom>
-
         <ContainerHeight height={15} />
-
+        <ContainerFlexWidthCustom widthPercent={48}>
+          <InputSwitch
+            label="Auto approve"
+            checked={auto_approve}
+            onChange={(event) => setAuto_approve(event.target.checked ? 1 : 0)}
+          />
+        </ContainerFlexWidthCustom>
         <ContainerFlexWidthCustom widthPercent={48}>
           <RadioGroup
             defaultCheckedValue={currency}
