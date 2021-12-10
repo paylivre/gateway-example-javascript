@@ -20,7 +20,6 @@ const UrlParametersList = (props) => {
     return Object.entries(parameters).map((param) => {
       const isBold = requiredFields.includes(param[0]);
       const isEmpty = param[1].length === 0;
-      console.log(isBold);
       return (
         <ListItem isBold={isBold} isEmpty={isEmpty}>
           {`${param[0]} = ${param[1]}`}
