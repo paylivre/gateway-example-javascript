@@ -1,39 +1,66 @@
 import React from "react";
 import { ContainerFlexWidth } from "../styles";
-import { Container, ListContainer, ListItem, SectionTitle } from "./styles";
+import {
+  Alert,
+  AlertContainer,
+  Container,
+  ListContainer,
+  ListItem,
+  SectionTitle,
+} from "./styles";
+
+const requiredFields = [
+  "merchant_id",
+  "operation",
+  "merchant_transaction_id",
+  "amount",
+  "currency",
+  "mock_type",
+  "account_id",
+  "mock_auto_approve",
+  "callback_url",
+];
 
 const UrlParametersList = (props) => {
   const { parameters } = props;
-  const requiredFields = [
-    "merchant_id",
-    "operation",
-    "merchant_transaction_id",
-    "amount",
-    "currency",
-    "mock_type",
-    "account_id",
-    "mock_auto_approve",
-    "callback_url",
-  ];
+  const validationArray = [];
 
-  const renderParametersList = () => {
-    return Object.entries(parameters).map((param) => {
-      const isBold = requiredFields.includes(param[0]);
-      const isEmpty = param[1].length === 0;
-      return (
-        <ListItem isBold={isBold} isEmpty={isEmpty}>
-          {`${param[0]} = ${param[1]}`}
-        </ListItem>
-      );
-    });
-  };
+  Object.entries(parameters).forEach((param) =>
+    validationArray.push(
+      requiredFields.includes(param[0]) && param[1].length === 0
+    )
+  );
+
+  function renderParametersItem(param, index) {
+    const isRequired = requiredFields.includes(param[0]);
+    const isEmpty = param[1].length === 0;
+    return (
+      <ListItem key={index} isEmpty={isEmpty}>
+        {isRequired && "*"}
+        {`${param[0]} = ${param[1]}`}
+      </ListItem>
+    );
+  }
+
+  function renderAlert() {
+    return (
+      <AlertContainer>
+        <Alert>All mandatory fields must be filled!</Alert>
+      </AlertContainer>
+    );
+  }
 
   return (
     <Container>
       <ContainerFlexWidth>
         <SectionTitle>Url Parameters</SectionTitle>
-        <ListContainer>{renderParametersList()}</ListContainer>
+        <ListContainer>
+          {Object.entries(parameters).map((param, index) =>
+            renderParametersItem(param, index)
+          )}
+        </ListContainer>
       </ContainerFlexWidth>
+      {validationArray.includes(true) && renderAlert()}
     </Container>
   );
 };
