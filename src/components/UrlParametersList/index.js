@@ -22,7 +22,7 @@ const requiredFields = [
 ];
 
 const UrlParametersList = (props) => {
-  const { parameters } = props;
+  const { parameters, baseUrl } = props;
   const validationArray = [];
 
   Object.entries(parameters).forEach((param) =>
@@ -55,6 +55,8 @@ const UrlParametersList = (props) => {
       <ContainerFlexWidth>
         <SectionTitle>Url Parameters</SectionTitle>
         <ListContainer>
+          <ListItem>{`base_url = ${baseUrl}`}</ListItem>
+          <br />
           {Object.entries(parameters).map((param, index) =>
             renderParametersItem(param, index)
           )}
