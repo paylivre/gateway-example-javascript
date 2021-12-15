@@ -22,6 +22,7 @@ import { getRandomMerchantTransactionId } from "../../utils/generatePropsRandom"
 
 import { useForceReloadData } from "../../contexts/forceReloadData";
 import InputSwitch from "../Switch";
+import packageJson from "../../../package.json";
 
 function Form({
   setData,
@@ -243,14 +244,12 @@ function Form({
           />
         </ContainerFlexWidthCustom>
       </ContainerRow>
-
       <ContainerHeight height={5} />
       <Input
         value={gateway_token}
         setValue={(value) => setGateway_token(value)}
         label="Gateway Token:"
       />
-
       <FormLabelCustom>User Data:</FormLabelCustom>
       <Input
         value={email}
@@ -275,7 +274,6 @@ function Form({
           />
         </ContainerFlexWidthCustom>
       </ContainerRow>
-
       <FormLabelCustom>Transaction Data:</FormLabelCustom>
       <ContainerRow>
         <ContainerFlexWidthCustom widthPercent={50}>
@@ -306,7 +304,6 @@ function Form({
           />
         </ContainerFlexWidthCustom>
       </ContainerRow>
-
       <ContainerHeight height={15} />
       <RadioGroup
         defaultCheckedValue={operation}
@@ -362,7 +359,6 @@ function Form({
           />
         </>
       )}
-
       {isDepositWallet && (
         <>
           <ContainerHeight height={15} />
@@ -385,7 +381,6 @@ function Form({
           </ContainerRow>
         </>
       )}
-
       {typeFormSelected === "json" &&
         operation === operation_withdraw &&
         selected_type === "4" && (
@@ -414,7 +409,6 @@ function Form({
             </ContainerFlexWidthCustom>
           </ContainerRow>
         )}
-
       <ContainerHeight height={15} />
       <Input
         value={callback_url}
@@ -422,13 +416,11 @@ function Form({
         label="Callback URL:"
       />
       <ContainerHeight height={20} />
-
       <Input
         value={redirect_url}
         setValue={(value) => setRedirect_url(value)}
         label="Redirect URL: (OPTIONAL)"
       />
-
       <ContainerHeight height={15} />
       <FormLabelCustom>Environment:</FormLabelCustom>
       <Input
@@ -436,13 +428,15 @@ function Form({
         setValue={(value) => setBaseUrl(value)}
         label="Base URL:"
       />
-
       <ContainerHeight height={15} />
       <Input
         value={logo_url}
         setValue={(value) => setLogoUrl(value)}
         label="Logo URL: (OPTIONAL)"
       />
+      <Typography variant="p" component="p" style={{ margin: "0.6rem 0" }}>
+        v{packageJson.version}
+      </Typography>
     </Container>
   );
 }
