@@ -69,8 +69,8 @@ function App() {
       operation: DataURL.operation,
       callback_url: DataURL.callback_url,
       redirect_url: DataURL.redirect_url,
-      mock_type: DataURL.type,
-      mock_auto_approve: DataURL.auto_approve,
+      type: DataURL.type,
+      auto_approve: DataURL.auto_approve,
       signature: signature || "",
       logoUrl: DataURL.logo_url ? DataURL.logo_url : "",
       email: DataURL.email ? DataURL.email : "",
@@ -84,7 +84,6 @@ function App() {
 
   async function handleGenerateSignature() {
     const urlWithoutSignature = getUrlGateway(data);
-
     const valueToGetArgon2iHash = gateway_token + urlWithoutSignature;
     const argon2iHash = await getArgon2i(valueToGetArgon2iHash);
     const signature = utf8_to_b64(argon2iHash);
@@ -186,7 +185,12 @@ function App() {
           >
             {`Generate ${typeFormSelected.toUpperCase()}`}
           </CustomButton>
-          <UrlParametersList parameters={urlGatewayParameters} />
+          {urlGenerated && (
+            <UrlParametersList
+              baseUrl={base_url}
+              parameters={urlGatewayParameters}
+            />
+          )}
         </ContainerResult>
       </Container>
     </>

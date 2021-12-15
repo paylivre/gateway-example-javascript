@@ -42,6 +42,7 @@ export const ListItem = styled.li`
   word-break: break-all;
   margin: 0.2rem 0;
   /* font-family: "Courier New", Courier, monospace; */
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 `;
 
 export const Alert = styled.h2`
@@ -50,10 +51,15 @@ export const Alert = styled.h2`
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 `;
 
+export const Legend = styled.p`
+  font-size: 1rem;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+`;
+
 export const AlertContainer = styled.div`
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: start;
   background: transparent;
   flex-wrap: wrap;
   width: auto;
