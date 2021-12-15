@@ -15,6 +15,7 @@ import {
 import { ContainerRow } from "../components/styles";
 
 import RequestJson from "../components/RequestJson";
+import UrlParametersList from "../components/UrlParametersList";
 
 function useQuery() {
   return new URLSearchParams(useLocation().search);
@@ -39,6 +40,7 @@ function App() {
   const [url, setURL] = React.useState("");
   const [urlGateway, setUrlGateway] = React.useState("");
   const [typeFormSelected, setTypeFormSelected] = React.useState("url");
+  const [urlGatewayParameters, setUrlGatewayParameters] = React.useState({});
 
   function getUrlGateway(DataURL, signature) {
     const merchant_transaction_id = `merchant_transaction_id=${DataURL.merchant_transaction_id}`;
@@ -47,19 +49,35 @@ function App() {
     const amount = `amount=${DataURL.amount}`;
     const currency = `currency=${DataURL.currency}`;
     const operation = `operation=${DataURL.operation}`;
-    const calback_url = `callback_url=${DataURL.callback_url}`;
+    const callback_url = `callback_url=${DataURL.callback_url}`;
     const redirect_url = `redirect_url=${DataURL.redirect_url}`;
     const mock_type = `type=${DataURL.type}`;
     const mock_auto_approve = `auto_approve=${DataURL.auto_approve}`;
     const Signature = signature ? `&signature=${signature}` : "";
     const logoUrl = DataURL.logo_url ? `&logo_url=${DataURL.logo_url}` : "";
-
     const email = DataURL.email ? `&email=${DataURL.email}` : "";
     const document_number = DataURL.document_number
       ? `&document_number=${DataURL.document_number}`
       : "";
 
-    const UrlGateway = `${base_url}?${merchant_transaction_id}&${merchant_id}&${operation}${email}${document_number}&${amount}&${currency}&${mock_type}&${account_id}&${calback_url}&${redirect_url}&${mock_auto_approve}${Signature}${logoUrl}`;
+    setUrlGatewayParameters({
+      merchant_transaction_id: DataURL.merchant_transaction_id,
+      merchant_id: DataURL.merchant_id,
+      account_id: DataURL.account_id,
+      amount: DataURL.amount,
+      currency: DataURL.currency,
+      operation: DataURL.operation,
+      callback_url: DataURL.callback_url,
+      redirect_url: DataURL.redirect_url,
+      mock_type: DataURL.type,
+      mock_auto_approve: DataURL.auto_approve,
+      signature: signature || "",
+      logoUrl: DataURL.logo_url ? DataURL.logo_url : "",
+      email: DataURL.email ? DataURL.email : "",
+      document_number: DataURL.document_number ? DataURL.document_number : "",
+    });
+
+    const UrlGateway = `${base_url}?${merchant_transaction_id}&${merchant_id}&${operation}${email}${document_number}&${amount}&${currency}&${mock_type}&${account_id}&${callback_url}&${redirect_url}&${mock_auto_approve}${Signature}${logoUrl}`;
 
     return UrlGateway;
   }
@@ -168,6 +186,7 @@ function App() {
           >
             {`Generate ${typeFormSelected.toUpperCase()}`}
           </CustomButton>
+          <UrlParametersList parameters={urlGatewayParameters} />
         </ContainerResult>
       </Container>
     </>

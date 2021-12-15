@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import Button from "@mui/material/Button";
 import FormLabel from "@mui/material/FormLabel";
+import { Typography } from "@mui/material";
 import {
   Container,
   FormLabelCustom,
@@ -20,6 +21,7 @@ import { PixKeyTypes } from "../../utils/pixKeyTypes";
 import { getRandomMerchantTransactionId } from "../../utils/generatePropsRandom";
 
 import { useForceReloadData } from "../../contexts/forceReloadData";
+import InputSwitch from "../Switch";
 
 function Form({
   setData,
@@ -67,6 +69,7 @@ function Form({
   const [login_email, setLoginEmail] = React.useState(dataDefault.email);
   const [password, setPassword] = React.useState("123123123");
   const [logo_url, setLogoUrl] = React.useState(logo_url_example);
+  const [auto_approve, setAuto_approve] = React.useState("1");
 
   const { disable, setDisable } = useForceReloadData();
 
@@ -116,9 +119,9 @@ function Form({
     selected_type === "5";
 
   useEffect(() => {
-    const auto_approve = "1";
     // Toda vez que alterar algum dado no data
     setUrlGenerated(false);
+    setDisable(false);
 
     const isWithdraw = operation === operation_withdraw;
 
@@ -166,6 +169,7 @@ function Form({
     email,
     document_number,
     account_id,
+    auto_approve,
     currency,
     operation,
     amount,
@@ -184,6 +188,18 @@ function Form({
   function handleReloadRandomFormatData() {
     setMerchantTransactionId(getRandomMerchantTransactionId());
     setDisable(false);
+  }
+
+  function isAutoApproveSelected() {
+    return auto_approve ? (
+      <Typography component="span" color="primary">
+        true
+      </Typography>
+    ) : (
+      <Typography component="span" color="error">
+        false
+      </Typography>
+    );
   }
 
   return (
@@ -262,17 +278,23 @@ function Form({
 
       <FormLabelCustom>Transaction Data:</FormLabelCustom>
       <ContainerRow>
-        <ContainerFlexWidthCustom widthPercent={48}>
+        <ContainerFlexWidthCustom widthPercent={50}>
           <Input
             value={amount}
             setValue={(value) => setAmount(value)}
             label="Amount:"
           />
         </ContainerFlexWidthCustom>
-
         <ContainerHeight height={15} />
-
-        <ContainerFlexWidthCustom widthPercent={48}>
+        <ContainerFlexWidthCustom widthPercent={60}>
+          <InputSwitch
+            label="Auto approve"
+            checked={auto_approve}
+            onChange={(event) => setAuto_approve(event.target.checked ? 1 : 0)}
+          />
+          {isAutoApproveSelected()}
+        </ContainerFlexWidthCustom>
+        <ContainerFlexWidthCustom widthPercent={60}>
           <RadioGroup
             defaultCheckedValue={currency}
             setChecked={(value) => setCurrency(value)}
