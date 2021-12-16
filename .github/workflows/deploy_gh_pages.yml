@@ -31,6 +31,7 @@ jobs:
       - name: Build project
         run: npm run build
 
+      # enable to run test with jest
       # - name: Run tests
       #   run: npm run test
 
