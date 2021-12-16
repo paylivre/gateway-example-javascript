@@ -434,9 +434,9 @@ function Form({
         setValue={(value) => setLogoUrl(value)}
         label="Logo URL: (OPTIONAL)"
       />
-      <Typography variant="p" component="p" style={{ margin: "0.6rem 0" }}>
+      <FormLabel component="legend" style={{ margin: "0.6rem 0" }}>
         v{packageJson.version}
-      </Typography>
+      </FormLabel>
     </Container>
   );
 }
