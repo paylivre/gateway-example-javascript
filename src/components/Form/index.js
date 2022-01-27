@@ -217,7 +217,7 @@ function Form({
     }
   }
 
-  function handleSetPixKeyData() {
+  function handleCleanPixKeyData() {
     setPix_key_type("");
     setPix_key("");
   }
@@ -433,7 +433,7 @@ function Form({
           </ContainerRow>
           <ContainerRow>
             <CustomButton
-              onClick={() => handleSetPixKeyData()}
+              onClick={() => handleCleanPixKeyData()}
               style={{
                 width: "30%",
                 textTransform: "none",
