@@ -16,7 +16,7 @@ import { ContainerRow } from "../components/styles";
 
 import RequestJson from "../components/RequestJson";
 import UrlParametersList from "../components/UrlParametersList";
-import { operation_deposit, operation_withdraw } from "../data/types";
+import { operation_withdraw } from "../data/types";
 
 function useQuery() {
   return new URLSearchParams(useLocation().search);
@@ -100,11 +100,11 @@ function App() {
     const redirect_url = `redirect_url=${DataURL.redirect_url}`;
     const mock_type = `type=${DataURL.type}`;
     const mock_auto_approve = `auto_approve=${DataURL.auto_approve}`;
-    const Signature = signature ? `signature=${signature}` : "";
-    const logoUrl = DataURL.logo_url ? `logo_url=${DataURL.logo_url}` : "";
-    const email = DataURL.email ? `email=${DataURL.email}` : "";
+    const Signature = signature ? `&signature=${signature}` : "";
+    const logoUrl = DataURL.logo_url ? `&logo_url=${DataURL.logo_url}` : "";
+    const email = DataURL.email ? `&email=${DataURL.email}` : "";
     const document_number = DataURL.document_number
-      ? `document_number=${DataURL.document_number}`
+      ? `&document_number=${DataURL.document_number}`
       : "";
     const pix_key = DataURL.pix_key ? `pix_key=${DataURL.pix_key}` : null;
     const pix_key_type = DataURL.pix_key_type
@@ -112,16 +112,14 @@ function App() {
       : null;
     let UrlGateway = null;
 
-    if (DataURL.operation === operation_deposit) {
-      UrlGateway = `${base_url}?${merchant_transaction_id}&${merchant_id}&${operation}&${email}&${document_number}&${amount}&${currency}&${mock_type}&${account_id}&${callback_url}&${redirect_url}&${mock_auto_approve}&${Signature}&${logoUrl}`;
-    }
-
-    if (DataURL.operation === operation_withdraw) {
-      if (!!DataURL.pix_key && !!DataURL.pix_key_type) {
-        UrlGateway = `${base_url}?${merchant_transaction_id}&${merchant_id}&${operation}&${email}&${document_number}&${amount}&${currency}&${pix_key_type}&${pix_key}&${mock_type}&${account_id}&${callback_url}&${redirect_url}&${mock_auto_approve}&${Signature}&${logoUrl}`;
-      } else {
-        UrlGateway = `${base_url}?${merchant_transaction_id}&${merchant_id}&${operation}&${email}&${document_number}&${amount}&${currency}&${mock_type}&${account_id}&${callback_url}&${redirect_url}&${mock_auto_approve}&${Signature}&${logoUrl}`;
-      }
+    if (
+      DataURL.operation === operation_withdraw &&
+      !!DataURL.pix_key &&
+      !!DataURL.pix_key_type
+    ) {
+      UrlGateway = `${base_url}?${merchant_transaction_id}&${merchant_id}&${operation}${email}${document_number}&${amount}&${currency}&${pix_key_type}&${pix_key}&${mock_type}&${account_id}&${callback_url}&${redirect_url}&${mock_auto_approve}&${Signature}&${logoUrl}`;
+    } else {
+      UrlGateway = `${base_url}?${merchant_transaction_id}&${merchant_id}&${operation}${email}${document_number}&${amount}&${currency}&${mock_type}&${account_id}&${callback_url}&${redirect_url}&${mock_auto_approve}${Signature}${logoUrl}`;
     }
 
     return UrlGateway;
