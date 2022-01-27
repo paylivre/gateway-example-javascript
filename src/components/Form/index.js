@@ -421,7 +421,7 @@ function Form({
               <Input
                 value={pix_key}
                 setValue={(value) => setPix_key(value)}
-                label="User Pix Key Value"
+                label="User Pix Key"
               />
             </ContainerFlexWidthCustom>
           </ContainerRow>
