@@ -38,8 +38,6 @@ function Form({
 }) {
   const logo_url_example =
     "https://github.com/paylivre/gateway-example-react-js/blob/master/assets/logo_jackpot_new.png?raw=true";
-  // const operation_deposit = "0";
-  // const operation_withdraw = "5";
   const [merchant_id, setMerchantId] = React.useState(dataDefault.merchant_id);
   const [merchant_transaction_id, setMerchantTransactionId] = React.useState(
     getRandomMerchantTransactionId()
@@ -428,6 +426,12 @@ function Form({
                 label="User Pix Key Value"
               />
             </ContainerFlexWidthCustom>
+          </ContainerRow>
+          <ContainerRow>
+            <span style={{ marginTop: "10px", marginBottom: "10px" }}>
+              Note: The Pix Key Type is optional, but if selected it is
+              necessary to fill in the User Pix Key Value.
+            </span>
           </ContainerRow>
           <ContainerRow>
             <CustomButton
