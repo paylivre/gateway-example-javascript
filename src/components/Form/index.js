@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Button from "@mui/material/Button";
 import FormLabel from "@mui/material/FormLabel";
 import { Typography } from "@mui/material";
@@ -38,25 +38,23 @@ function Form({
 }) {
   const logo_url_example =
     "https://github.com/paylivre/gateway-example-react-js/blob/master/assets/logo_jackpot_new.png?raw=true";
-  const [merchant_id, setMerchantId] = React.useState(dataDefault.merchant_id);
-  const [merchant_transaction_id, setMerchantTransactionId] = React.useState(
+  const [merchant_id, setMerchantId] = useState(dataDefault.merchant_id);
+  const [merchant_transaction_id, setMerchantTransactionId] = useState(
     getRandomMerchantTransactionId()
   );
-  const [email, setEmail] = React.useState(dataDefault.email);
-  const [document_number, setDocumentNumber] = React.useState(
+  const [email, setEmail] = useState(dataDefault.email);
+  const [document_number, setDocumentNumber] = useState(
     dataDefault.document_number
   );
-  const [account_id, setAccountId] = React.useState("123654asd");
-  const [currency, setCurrency] = React.useState("BRL");
-  const [operation, setOperation] = React.useState(operation_deposit);
-  const [amount, setAmount] = React.useState("500");
-  const [callback_url, setcCallback_url] = React.useState(
-    "https://www.google.com"
-  );
-  const [redirect_url, setRedirect_url] = React.useState(
+  const [account_id, setAccountId] = useState("123654asd");
+  const [currency, setCurrency] = useState("BRL");
+  const [operation, setOperation] = useState(operation_deposit);
+  const [amount, setAmount] = useState("500");
+  const [callback_url, setcCallback_url] = useState("https://www.google.com");
+  const [redirect_url, setRedirect_url] = useState(
     "https://www.merchant_to_you.com"
   );
-  const [typesCheckeds, setTypesCheckeds] = React.useState({
+  const [typesCheckeds, setTypesCheckeds] = useState({
     [typesList.WIRETRANFER]: false,
     [typesList.BILLET]: false,
     [typesList.PIX]: true,
@@ -205,12 +203,12 @@ function Form({
   function handleSetPixKey(string_value) {
     if (string_value === PixKeyTypes.document) {
       setPix_key_type(PixKeyTypes.document);
-      setPix_key(dataDefault.document_number);
+      setPix_key(document_number);
     }
 
     if (string_value === PixKeyTypes.email) {
       setPix_key_type(PixKeyTypes.email);
-      setPix_key(dataDefault.email);
+      setPix_key(email);
     }
 
     if (string_value === PixKeyTypes.phone) {
