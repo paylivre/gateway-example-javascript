@@ -60,15 +60,15 @@ function Form({
     [typesList.PIX]: true,
     [typesList.WALLET]: false,
   });
-  const [type, setType] = React.useState("1");
-  const [selected_type, setSelected_type] = React.useState("4");
-  const [checkDataSelectedType, setCheckDataSelectedType] = React.useState([]);
-  const [pix_key_type, setPix_key_type] = React.useState("");
-  const [pix_key, setPix_key] = React.useState("");
-  const [login_email, setLoginEmail] = React.useState(dataDefault.email);
-  const [password, setPassword] = React.useState("123123123");
-  const [logo_url, setLogoUrl] = React.useState(logo_url_example);
-  const [auto_approve, setAuto_approve] = React.useState("1");
+  const [type, setType] = useState("1");
+  const [selected_type, setSelected_type] = useState("4");
+  const [checkDataSelectedType, setCheckDataSelectedType] = useState([]);
+  const [pix_key_type, setPix_key_type] = useState("");
+  const [pix_key, setPix_key] = useState("");
+  const [login_email, setLoginEmail] = useState(dataDefault.email);
+  const [password, setPassword] = useState("123123123");
+  const [logo_url, setLogoUrl] = useState(logo_url_example);
+  const [auto_approve, setAuto_approve] = useState(true);
   const { disable, setDisable } = useForceReloadData();
 
   function setTypesChecked(typeKey, isChecked) {
@@ -142,7 +142,7 @@ function Form({
         ...oldData,
         account_id,
         amount,
-        auto_approve,
+        auto_approve: auto_approve === true ? "1" : "0",
         callback_url,
         currency,
         document_number,
@@ -189,7 +189,7 @@ function Form({
   }
 
   function isAutoApproveSelected() {
-    return auto_approve ? (
+    return auto_approve === true ? (
       <Typography component="span" color="primary">
         true
       </Typography>
@@ -307,7 +307,7 @@ function Form({
           <InputSwitch
             label="Auto approve"
             checked={auto_approve}
-            onChange={(event) => setAuto_approve(event.target.checked ? 1 : 0)}
+            onChange={(event) => setAuto_approve(event.target.checked)}
           />
           {isAutoApproveSelected()}
         </ContainerFlexWidthCustom>
