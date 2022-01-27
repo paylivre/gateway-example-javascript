@@ -16,6 +16,7 @@ import { ContainerRow } from "../components/styles";
 
 import RequestJson from "../components/RequestJson";
 import UrlParametersList from "../components/UrlParametersList";
+import { operation_withdraw } from "../data/types";
 
 function useQuery() {
   return new URLSearchParams(useLocation().search);
@@ -42,7 +43,53 @@ function App() {
   const [typeFormSelected, setTypeFormSelected] = React.useState("url");
   const [urlGatewayParameters, setUrlGatewayParameters] = React.useState({});
 
+  function handleUrlGatewayParameters(OBJ_DataURL, STRING_Signature) {
+    if (!!OBJ_DataURL.pix_key && !!OBJ_DataURL.pix_key_type) {
+      setUrlGatewayParameters({
+        merchant_transaction_id: OBJ_DataURL.merchant_transaction_id,
+        merchant_id: OBJ_DataURL.merchant_id,
+        account_id: OBJ_DataURL.account_id,
+        amount: OBJ_DataURL.amount,
+        currency: OBJ_DataURL.currency,
+        operation: OBJ_DataURL.operation,
+        callback_url: OBJ_DataURL.callback_url,
+        redirect_url: OBJ_DataURL.redirect_url,
+        type: OBJ_DataURL.type,
+        auto_approve: OBJ_DataURL.auto_approve,
+        signature: STRING_Signature || "",
+        logoUrl: OBJ_DataURL.logo_url ? OBJ_DataURL.logo_url : "",
+        email: OBJ_DataURL.email ? OBJ_DataURL.email : "",
+        document_number: OBJ_DataURL.document_number
+          ? OBJ_DataURL.document_number
+          : "",
+        pix_key: OBJ_DataURL.pix_key,
+        pix_key_type: OBJ_DataURL.pix_key_type,
+      });
+    } else {
+      setUrlGatewayParameters({
+        merchant_transaction_id: OBJ_DataURL.merchant_transaction_id,
+        merchant_id: OBJ_DataURL.merchant_id,
+        account_id: OBJ_DataURL.account_id,
+        amount: OBJ_DataURL.amount,
+        currency: OBJ_DataURL.currency,
+        operation: OBJ_DataURL.operation,
+        callback_url: OBJ_DataURL.callback_url,
+        redirect_url: OBJ_DataURL.redirect_url,
+        type: OBJ_DataURL.type,
+        auto_approve: OBJ_DataURL.auto_approve,
+        signature: STRING_Signature || "",
+        logoUrl: OBJ_DataURL.logo_url ? OBJ_DataURL.logo_url : "",
+        email: OBJ_DataURL.email ? OBJ_DataURL.email : "",
+        document_number: OBJ_DataURL.document_number
+          ? OBJ_DataURL.document_number
+          : "",
+      });
+    }
+  }
+
   function getUrlGateway(DataURL, signature) {
+    handleUrlGatewayParameters(DataURL, signature);
+
     const merchant_transaction_id = `merchant_transaction_id=${DataURL.merchant_transaction_id}`;
     const merchant_id = `merchant_id=${DataURL.merchant_id}`;
     const account_id = `account_id=${DataURL.account_id}`;
@@ -59,32 +106,34 @@ function App() {
     const document_number = DataURL.document_number
       ? `&document_number=${DataURL.document_number}`
       : "";
+    const pix_key = DataURL.pix_key ? `&pix_key=${DataURL.pix_key}` : null;
+    const pix_key_type = DataURL.pix_key_type
+      ? `&pix_key_type=${DataURL.pix_key_type}`
+      : null;
+    let UrlGateway = null;
 
-    setUrlGatewayParameters({
-      merchant_transaction_id: DataURL.merchant_transaction_id,
-      merchant_id: DataURL.merchant_id,
-      account_id: DataURL.account_id,
-      amount: DataURL.amount,
-      currency: DataURL.currency,
-      operation: DataURL.operation,
-      callback_url: DataURL.callback_url,
-      redirect_url: DataURL.redirect_url,
-      type: DataURL.type,
-      auto_approve: DataURL.auto_approve,
-      signature: signature || "",
-      logoUrl: DataURL.logo_url ? DataURL.logo_url : "",
-      email: DataURL.email ? DataURL.email : "",
-      document_number: DataURL.document_number ? DataURL.document_number : "",
-    });
-
-    const UrlGateway = `${base_url}?${merchant_transaction_id}&${merchant_id}&${operation}${email}${document_number}&${amount}&${currency}&${mock_type}&${account_id}&${callback_url}&${redirect_url}&${mock_auto_approve}${Signature}${logoUrl}`;
+    if (
+      DataURL.operation === operation_withdraw &&
+      !!DataURL.pix_key &&
+      !!DataURL.pix_key_type
+    ) {
+      UrlGateway = `${base_url}?${merchant_transaction_id}&${merchant_id}&${operation}${email}${document_number}&${amount}&${currency}${pix_key_type}${pix_key}&${mock_type}&${account_id}&${callback_url}&${redirect_url}&${mock_auto_approve}${Signature}${logoUrl}`;
+    } else {
+      UrlGateway = `${base_url}?${merchant_transaction_id}&${merchant_id}&${operation}${email}${document_number}&${amount}&${currency}&${mock_type}&${account_id}&${callback_url}&${redirect_url}&${mock_auto_approve}${Signature}${logoUrl}`;
+    }
 
     return UrlGateway;
   }
 
   async function handleGenerateSignature() {
     const urlWithoutSignature = getUrlGateway(data);
+
+    console.log("debug without signature value", urlWithoutSignature);
+
     const valueToGetArgon2iHash = gateway_token + urlWithoutSignature;
+
+    console.log("debug with signature to argon", valueToGetArgon2iHash);
+
     const argon2iHash = await getArgon2i(valueToGetArgon2iHash);
     const signature = utf8_to_b64(argon2iHash);
 
