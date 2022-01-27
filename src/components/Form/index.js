@@ -24,6 +24,7 @@ import { useForceReloadData } from "../../contexts/forceReloadData";
 import InputSwitch from "../Switch";
 import packageJson from "../../../package.json";
 import { CustomButton } from "../../app/styles";
+import { operation_deposit, operation_withdraw } from "../../data/types";
 
 function Form({
   setData,
@@ -37,8 +38,8 @@ function Form({
 }) {
   const logo_url_example =
     "https://github.com/paylivre/gateway-example-react-js/blob/master/assets/logo_jackpot_new.png?raw=true";
-  const operation_deposit = "0";
-  const operation_withdraw = "5";
+  // const operation_deposit = "0";
+  // const operation_withdraw = "5";
   const [merchant_id, setMerchantId] = React.useState(dataDefault.merchant_id);
   const [merchant_transaction_id, setMerchantTransactionId] = React.useState(
     getRandomMerchantTransactionId()
