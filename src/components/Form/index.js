@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Button from "@mui/material/Button";
 import FormLabel from "@mui/material/FormLabel";
 import { Typography } from "@mui/material";
@@ -23,6 +23,8 @@ import { getRandomMerchantTransactionId } from "../../utils/generatePropsRandom"
 import { useForceReloadData } from "../../contexts/forceReloadData";
 import InputSwitch from "../Switch";
 import packageJson from "../../../package.json";
+import { CustomButton } from "../../app/styles";
+import { operation_deposit, operation_withdraw } from "../../data/types";
 
 function Form({
   setData,
@@ -36,42 +38,37 @@ function Form({
 }) {
   const logo_url_example =
     "https://github.com/paylivre/gateway-example-react-js/blob/master/assets/logo_jackpot_new.png?raw=true";
-  const operation_deposit = "0";
-  const operation_withdraw = "5";
-  const [merchant_id, setMerchantId] = React.useState(dataDefault.merchant_id);
-  const [merchant_transaction_id, setMerchantTransactionId] = React.useState(
+  const [merchant_id, setMerchantId] = useState(dataDefault.merchant_id);
+  const [merchant_transaction_id, setMerchantTransactionId] = useState(
     getRandomMerchantTransactionId()
   );
-  const [email, setEmail] = React.useState(dataDefault.email);
-  const [document_number, setDocumentNumber] = React.useState(
+  const [email, setEmail] = useState(dataDefault.email);
+  const [document_number, setDocumentNumber] = useState(
     dataDefault.document_number
   );
-  const [account_id, setAccountId] = React.useState("123654asd");
-  const [currency, setCurrency] = React.useState("BRL");
-  const [operation, setOperation] = React.useState(operation_deposit);
-  const [amount, setAmount] = React.useState("500");
-  const [callback_url, setcCallback_url] = React.useState(
-    "https://www.google.com"
-  );
-  const [redirect_url, setRedirect_url] = React.useState(
+  const [account_id, setAccountId] = useState("123654asd");
+  const [currency, setCurrency] = useState("BRL");
+  const [operation, setOperation] = useState(operation_deposit);
+  const [amount, setAmount] = useState("500");
+  const [callback_url, setcCallback_url] = useState("https://www.google.com");
+  const [redirect_url, setRedirect_url] = useState(
     "https://www.merchant_to_you.com"
   );
-  const [typesCheckeds, setTypesCheckeds] = React.useState({
+  const [typesCheckeds, setTypesCheckeds] = useState({
     [typesList.WIRETRANFER]: false,
     [typesList.BILLET]: false,
     [typesList.PIX]: true,
     [typesList.WALLET]: false,
   });
-  const [type, setType] = React.useState("1");
-  const [selected_type, setSelected_type] = React.useState("4");
-  const [checkDataSelectedType, setCheckDataSelectedType] = React.useState([]);
-  const [pix_key_type, setPix_key_type] = React.useState(PixKeyTypes.document);
-  const [pix_key, setPix_key] = React.useState(dataDefault.document_number);
-  const [login_email, setLoginEmail] = React.useState(dataDefault.email);
-  const [password, setPassword] = React.useState("123123123");
-  const [logo_url, setLogoUrl] = React.useState(logo_url_example);
-  const [auto_approve, setAuto_approve] = React.useState("1");
-
+  const [type, setType] = useState("1");
+  const [selected_type, setSelected_type] = useState("4");
+  const [checkDataSelectedType, setCheckDataSelectedType] = useState([]);
+  const [pix_key_type, setPix_key_type] = useState("");
+  const [pix_key, setPix_key] = useState("");
+  const [login_email, setLoginEmail] = useState(dataDefault.email);
+  const [password, setPassword] = useState("123123123");
+  const [logo_url, setLogoUrl] = useState(logo_url_example);
+  const [auto_approve, setAuto_approve] = useState(true);
   const { disable, setDisable } = useForceReloadData();
 
   function setTypesChecked(typeKey, isChecked) {
@@ -145,7 +142,7 @@ function Form({
         ...oldData,
         account_id,
         amount,
-        auto_approve,
+        auto_approve: auto_approve === true ? "1" : "0",
         callback_url,
         currency,
         document_number,
@@ -192,7 +189,7 @@ function Form({
   }
 
   function isAutoApproveSelected() {
-    return auto_approve ? (
+    return auto_approve === true ? (
       <Typography component="span" color="primary">
         true
       </Typography>
@@ -201,6 +198,28 @@ function Form({
         false
       </Typography>
     );
+  }
+
+  function handleSetPixKey(string_value) {
+    if (string_value === PixKeyTypes.document) {
+      setPix_key_type(PixKeyTypes.document);
+      setPix_key(document_number);
+    }
+
+    if (string_value === PixKeyTypes.email) {
+      setPix_key_type(PixKeyTypes.email);
+      setPix_key(email);
+    }
+
+    if (string_value === PixKeyTypes.phone) {
+      setPix_key_type(PixKeyTypes.phone);
+      setPix_key("");
+    }
+  }
+
+  function handleCleanPixKeyData() {
+    setPix_key_type("");
+    setPix_key("");
   }
 
   return (
@@ -288,7 +307,7 @@ function Form({
           <InputSwitch
             label="Auto approve"
             checked={auto_approve}
-            onChange={(event) => setAuto_approve(event.target.checked ? 1 : 0)}
+            onChange={(event) => setAuto_approve(event.target.checked)}
           />
           {isAutoApproveSelected()}
         </ContainerFlexWidthCustom>
@@ -381,16 +400,15 @@ function Form({
           </ContainerRow>
         </>
       )}
-      {typeFormSelected === "json" &&
-        operation === operation_withdraw &&
-        selected_type === "4" && (
+      {operation === operation_withdraw && selected_type === "4" && (
+        <>
           <ContainerRow>
             <ContainerFlexWidthCustom widthPercent={48}>
               <ContainerHeight height={25} />
               <RadioGroup
                 defaultCheckedValue={pix_key_type}
-                setChecked={(value) => setPix_key_type(value)}
-                labelGroup="Pix Key Type"
+                setChecked={(value) => handleSetPixKey(value)}
+                labelGroup="Pix Key Type(OPTIONAL)"
                 checkData={[
                   { value: PixKeyTypes.document, label: "CPF/CNPJ" },
                   { value: PixKeyTypes.phone, label: "Phone" },
@@ -398,7 +416,6 @@ function Form({
                 ]}
               />
             </ContainerFlexWidthCustom>
-
             <ContainerFlexWidthCustom widthPercent={48}>
               <ContainerHeight height={30} />
               <Input
@@ -408,7 +425,26 @@ function Form({
               />
             </ContainerFlexWidthCustom>
           </ContainerRow>
-        )}
+          <ContainerRow>
+            <span style={{ marginTop: "10px", marginBottom: "10px" }}>
+              Note: The Pix Key Type is optional, but if selected it is
+              necessary to fill in the User Pix Key Value.
+            </span>
+          </ContainerRow>
+          <ContainerRow>
+            <CustomButton
+              onClick={() => handleCleanPixKeyData()}
+              style={{
+                width: "30%",
+                textTransform: "none",
+              }}
+              variant="contained"
+            >
+              Clear Data Pix
+            </CustomButton>
+          </ContainerRow>
+        </>
+      )}
       <ContainerHeight height={15} />
       <Input
         value={callback_url}
