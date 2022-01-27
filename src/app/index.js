@@ -106,7 +106,6 @@ function App() {
     const document_number = DataURL.document_number
       ? `document_number=${DataURL.document_number}`
       : "";
-
     const pix_key = DataURL.pix_key ? `pix_key=${DataURL.pix_key}` : null;
     const pix_key_type = DataURL.pix_key_type
       ? `pix_key_type=${DataURL.pix_key_type}`
@@ -114,7 +113,7 @@ function App() {
     let UrlGateway = null;
 
     if (DataURL.operation === operation_deposit) {
-      UrlGateway = `${base_url}?${merchant_transaction_id}&${merchant_id}&${operation}${email}${document_number}&${amount}&${currency}&${mock_type}&${account_id}&${callback_url}&${redirect_url}&${mock_auto_approve}${Signature}${logoUrl}`;
+      UrlGateway = `${base_url}?${merchant_transaction_id}&${merchant_id}&${operation}&${email}&${document_number}&${amount}&${currency}&${mock_type}&${account_id}&${callback_url}&${redirect_url}&${mock_auto_approve}&${Signature}&${logoUrl}`;
     }
 
     if (DataURL.operation === operation_withdraw) {
@@ -130,7 +129,13 @@ function App() {
 
   async function handleGenerateSignature() {
     const urlWithoutSignature = getUrlGateway(data);
+
+    console.log("debug without signature value", urlWithoutSignature);
+
     const valueToGetArgon2iHash = gateway_token + urlWithoutSignature;
+
+    console.log("debug with signature to argon", valueToGetArgon2iHash);
+
     const argon2iHash = await getArgon2i(valueToGetArgon2iHash);
     const signature = utf8_to_b64(argon2iHash);
 
