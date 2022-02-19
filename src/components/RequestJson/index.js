@@ -28,14 +28,31 @@ function RequestJson({
   label,
   textButton,
   type,
+  baseUrl,
+  isDevLocalhost,
+  devLocalhostPort,
   ...rest
 }) {
   const { disable, setDisable } = useForceReloadData();
 
+  function getLocahostBaseUrl() {
+    const portDefault = "3000";
+    const port = devLocalhostPort !== null ? devLocalhostPort : portDefault;
+    return `http://localhost:${port}`;
+  }
+
+  function getReplacedUrlGatewayIfLocalhost() {
+    if (isDevLocalhost) {
+      return urlGateway.replace(baseUrl, getLocahostBaseUrl());
+    }
+    return urlGateway;
+  }
+
   function handleCopyToClipboard() {
     if (!disable) {
       const dataRequestJson = JSON.stringify({ ...dataRequest, url });
-      const textToCopy = type === "url" ? urlGateway : dataRequestJson;
+      const textToCopy =
+        type === "url" ? getReplacedUrlGatewayIfLocalhost() : dataRequestJson;
       copyToClipboard(textToCopy);
       const textToNotification = type === "url" ? "Copied URL" : "JSON Copied";
       NotificationManager.success(textToNotification, "", 1000);
@@ -47,7 +64,7 @@ function RequestJson({
 
   function handleOpenUrlNewWindow() {
     if (!disable) {
-      window.open(urlGateway);
+      window.open(getReplacedUrlGatewayIfLocalhost());
       setDisable(true);
     }
   }
@@ -107,7 +124,11 @@ function RequestJson({
         <JSONPretty id="json-pretty" data={{ ...dataRequest, url }} />
       )}
 
-      {urlGateway && <PColor color="#ffff80">{urlGateway}</PColor>}
+      {urlGateway && (
+        <PColor color="#ffff80">
+          {getReplacedUrlGatewayIfLocalhost(urlGateway)}
+        </PColor>
+      )}
     </Container>
   );
 }
