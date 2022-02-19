@@ -124,16 +124,16 @@ function Form({
     const isWithdraw = operation === operation_withdraw;
 
     function getType() {
-      if (operation === operation_withdraw) {
-        const typeNumber = Number(type);
-        if (Number.isNaN(typeNumber)) {
-          return "0";
-        }
-        if (typeNumber > 1) {
-          return "1";
-        }
-        return type;
-      }
+      // if (operation === operation_withdraw) {
+      //   const typeNumber = Number(type);
+      //   if (Number.isNaN(typeNumber)) {
+      //     return "0";
+      //   }
+      //   if (typeNumber > 1) {
+      //     return "1";
+      //   }
+      //   return type;
+      // }
       return type;
     }
 
@@ -341,6 +341,13 @@ function Form({
           isChecked={typesCheckeds[typesList.PIX]}
           setChecked={(isChecked) => setTypesChecked(typesList.PIX, isChecked)}
         />
+        <Checkbox
+          label="Paylivre Wallet"
+          isChecked={typesCheckeds[typesList.WALLET]}
+          setChecked={(isChecked) =>
+            setTypesChecked(typesList.WALLET, isChecked)
+          }
+        />
         {operation === operation_deposit && (
           <>
             <Checkbox
@@ -355,13 +362,6 @@ function Form({
               isChecked={typesCheckeds[typesList.WIRETRANFER]}
               setChecked={(isChecked) =>
                 setTypesChecked(typesList.WIRETRANFER, isChecked)
-              }
-            />
-            <Checkbox
-              label="Paylivre Wallet"
-              isChecked={typesCheckeds[typesList.WALLET]}
-              setChecked={(isChecked) =>
-                setTypesChecked(typesList.WALLET, isChecked)
               }
             />
           </>
