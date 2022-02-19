@@ -26,6 +26,9 @@ function App() {
   const query = useQuery();
   const isDev = query.get("dev") === "1";
   const isDevPlayground = query.get("playground") === "1";
+  const isDevLocalhost = query.get("localhost") === "1";
+  const devLocalhostPort = query.get("localhost_port");
+
   const dataDefault = !isDev
     ? DataDefaultPlayground
     : isDevPlayground
@@ -206,6 +209,9 @@ function App() {
                   urlGateway={urlGateway}
                   label="URL to Gateway Web:"
                   textButton="Open URL Gateway"
+                  baseUrl={dataDefault.base_url}
+                  isDevLocalhost={isDevLocalhost}
+                  devLocalhostPort={devLocalhostPort}
                 />
               )}
 
@@ -217,6 +223,9 @@ function App() {
                   url={url}
                   label="JSON Post Request:"
                   textButton="Copy JSON"
+                  baseUrl={dataDefault.base_url}
+                  isDevLocalhost={isDevLocalhost}
+                  devLocalhostPort={devLocalhostPort}
                 />
               )}
             </>
