@@ -6,7 +6,6 @@ import {
   Container,
   FormLabelCustom,
   ContainerHeight,
-  ContainerCheckTypes,
   ContainerFlexWidthCustom,
 } from "./styles";
 
@@ -14,8 +13,6 @@ import { ContainerRow } from "../styles";
 
 import Input from "../Input";
 import RadioGroup from "../RadioGroup";
-import Checkbox from "../CheckBox";
-import { typesList, getTypeInteger } from "../../utils/typesUtils";
 import { PixKeyTypes } from "../../utils/pixKeyTypes";
 
 import { getRandomMerchantTransactionId } from "../../utils/generatePropsRandom";
@@ -25,6 +22,7 @@ import InputSwitch from "../Switch";
 import packageJson from "../../../package.json";
 import { CustomButton } from "../../app/styles";
 import { operation_deposit, operation_withdraw } from "../../data/types";
+import TypesTransaction from "./components/TypesTransaction";
 
 function Form({
   setData,
@@ -54,12 +52,6 @@ function Form({
   const [redirect_url, setRedirect_url] = useState(
     "https://www.merchant_to_you.com"
   );
-  const [typesCheckeds, setTypesCheckeds] = useState({
-    [typesList.WIRETRANFER]: false,
-    [typesList.BILLET]: false,
-    [typesList.PIX]: true,
-    [typesList.WALLET]: false,
-  });
   const [type, setType] = useState("1");
   const [selected_type, setSelected_type] = useState("4");
   const [checkDataSelectedType, setCheckDataSelectedType] = useState([]);
@@ -85,53 +77,16 @@ function Form({
     }
   }
 
+  function handleCleanPixKeyData() {
+    setPix_key_type("");
+    setPix_key("");
+  }
+
   function showingAndSetPixKeyDefault() {
     if (!checkIsTypeWithdrawValid(type)) {
-      setPix_key_type("");
-      setPix_key("");
+      handleCleanPixKeyData();
     }
   }
-
-  function setTypesChecked(typeKey, isChecked) {
-    const newTypesCheckeds = { ...typesCheckeds, [typeKey]: isChecked };
-    setTypesCheckeds(newTypesCheckeds);
-    const newType = getTypeInteger(newTypesCheckeds);
-    setType(newType);
-  }
-
-  useEffect(() => {
-    function enableCheckDataSelectedType() {
-      const newCheckDataSelectedType = [];
-      if (typesCheckeds[4]) {
-        newCheckDataSelectedType.push({
-          value: typesList.PIX.toString(),
-          label: "Pix",
-        });
-      }
-      if (typesCheckeds[1]) {
-        newCheckDataSelectedType.push({
-          value: typesList.BILLET.toString(),
-          label: "Billet",
-        });
-      }
-      if (typesCheckeds[0]) {
-        newCheckDataSelectedType.push({
-          value: typesList.WIRETRANFER.toString(),
-          label: "Wire Transfer",
-        });
-      }
-      if (typesCheckeds[5]) {
-        newCheckDataSelectedType.push({
-          value: typesList.WALLET.toString(),
-          label: "Paylivre Wallet",
-        });
-      }
-
-      setCheckDataSelectedType(newCheckDataSelectedType);
-    }
-    enableCheckDataSelectedType();
-    showingAndSetPixKeyDefault();
-  }, [typesCheckeds]);
 
   const isDepositWallet =
     typeFormSelected === "json" &&
@@ -205,8 +160,6 @@ function Form({
     logo_url,
   ]);
 
-  console.log({ type });
-
   function handleReloadRandomFormatData() {
     setMerchantTransactionId(getRandomMerchantTransactionId());
     setDisable(false);
@@ -239,11 +192,6 @@ function Form({
       setPix_key_type(PixKeyTypes.phone);
       setPix_key("");
     }
-  }
-
-  function handleCleanPixKeyData() {
-    setPix_key_type("");
-    setPix_key("");
   }
 
   return (
@@ -359,38 +307,14 @@ function Form({
       />
       <ContainerHeight height={15} />
       <FormLabel component="legend">Type passed by merchant</FormLabel>
-      <ContainerCheckTypes>
-        <Checkbox
-          label="PIX"
-          isChecked={typesCheckeds[typesList.PIX]}
-          setChecked={(isChecked) => setTypesChecked(typesList.PIX, isChecked)}
-        />
-        <Checkbox
-          label="Paylivre Wallet"
-          isChecked={typesCheckeds[typesList.WALLET]}
-          setChecked={(isChecked) =>
-            setTypesChecked(typesList.WALLET, isChecked)
-          }
-        />
-        {operation === operation_deposit && (
-          <>
-            <Checkbox
-              label="Billet"
-              isChecked={typesCheckeds[typesList.BILLET]}
-              setChecked={(isChecked) =>
-                setTypesChecked(typesList.BILLET, isChecked)
-              }
-            />
-            <Checkbox
-              label="Wire Transfer"
-              isChecked={typesCheckeds[typesList.WIRETRANFER]}
-              setChecked={(isChecked) =>
-                setTypesChecked(typesList.WIRETRANFER, isChecked)
-              }
-            />
-          </>
-        )}
-      </ContainerCheckTypes>
+
+      <TypesTransaction
+        setType={setType}
+        operation={operation}
+        setCheckDataSelectedType={setCheckDataSelectedType}
+        showingAndSetPixKeyDefault={() => showingAndSetPixKeyDefault()}
+      />
+
       {typeFormSelected === "json" && (
         <>
           <ContainerHeight height={15} />
