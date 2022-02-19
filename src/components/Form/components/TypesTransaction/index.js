@@ -12,15 +12,6 @@ const typesCheckedsDefault = {
   [typesList.WALLET]: false,
 };
 
-function setTypesCheckedDefault(operation, setTypesCheckeds) {
-  if (operation === operation_withdraw) {
-    setTypesCheckeds({
-      ...typesCheckedsDefault,
-      [typesList.PIX]: true,
-    });
-  }
-}
-
 const TypesTransaction = ({
   setType,
   operation,
@@ -41,6 +32,16 @@ const TypesTransaction = ({
     setTypesCheckeds(newTypesCheckeds);
     const newType = getTypeInteger(newTypesCheckeds);
     setType(newType);
+  }
+
+  function setTypesCheckedDefault() {
+    if (operation === operation_withdraw) {
+      setTypesCheckeds({
+        ...typesCheckedsDefault,
+        [typesList.PIX]: true,
+      });
+      setType("1");
+    }
   }
 
   useEffect(() => {

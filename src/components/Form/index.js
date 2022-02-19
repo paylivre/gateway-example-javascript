@@ -101,16 +101,6 @@ function Form({
     const isWithdraw = operation === operation_withdraw;
 
     function getType() {
-      // if (operation === operation_withdraw) {
-      //   const typeNumber = Number(type);
-      //   if (Number.isNaN(typeNumber)) {
-      //     return "0";
-      //   }
-      //   if (typeNumber > 1) {
-      //     return "1";
-      //   }
-      //   return type;
-      // }
       return type;
     }
 
