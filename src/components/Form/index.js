@@ -71,6 +71,27 @@ function Form({
   const [auto_approve, setAuto_approve] = useState(true);
   const { disable, setDisable } = useForceReloadData();
 
+  function checkIsTypeWithdrawValid(Type) {
+    switch (Type) {
+      case "1": {
+        return true;
+      }
+      case "9": {
+        return true;
+      }
+      default: {
+        return false;
+      }
+    }
+  }
+
+  function showingAndSetPixKeyDefault() {
+    if (!checkIsTypeWithdrawValid(type)) {
+      setPix_key_type("");
+      setPix_key("");
+    }
+  }
+
   function setTypesChecked(typeKey, isChecked) {
     const newTypesCheckeds = { ...typesCheckeds, [typeKey]: isChecked };
     setTypesCheckeds(newTypesCheckeds);
@@ -109,6 +130,7 @@ function Form({
       setCheckDataSelectedType(newCheckDataSelectedType);
     }
     enableCheckDataSelectedType();
+    showingAndSetPixKeyDefault();
   }, [typesCheckeds]);
 
   const isDepositWallet =
@@ -182,6 +204,8 @@ function Form({
     pix_key,
     logo_url,
   ]);
+
+  console.log({ type });
 
   function handleReloadRandomFormatData() {
     setMerchantTransactionId(getRandomMerchantTransactionId());
@@ -400,51 +424,53 @@ function Form({
           </ContainerRow>
         </>
       )}
-      {operation === operation_withdraw && selected_type === "4" && (
-        <>
-          <ContainerRow>
-            <ContainerFlexWidthCustom widthPercent={48}>
-              <ContainerHeight height={25} />
-              <RadioGroup
-                defaultCheckedValue={pix_key_type}
-                setChecked={(value) => handleSetPixKey(value)}
-                labelGroup="Pix Key Type(OPTIONAL)"
-                checkData={[
-                  { value: PixKeyTypes.document, label: "CPF/CNPJ" },
-                  { value: PixKeyTypes.phone, label: "Phone" },
-                  { value: PixKeyTypes.email, label: "Email" },
-                ]}
-              />
-            </ContainerFlexWidthCustom>
-            <ContainerFlexWidthCustom widthPercent={48}>
-              <ContainerHeight height={30} />
-              <Input
-                value={pix_key}
-                setValue={(value) => setPix_key(value)}
-                label="User Pix Key"
-              />
-            </ContainerFlexWidthCustom>
-          </ContainerRow>
-          <ContainerRow>
-            <span style={{ marginTop: "10px", marginBottom: "10px" }}>
-              Note: The Pix Key Type is optional, but if selected it is
-              necessary to fill in the User Pix Key Value.
-            </span>
-          </ContainerRow>
-          <ContainerRow>
-            <CustomButton
-              onClick={() => handleCleanPixKeyData()}
-              style={{
-                width: "30%",
-                textTransform: "none",
-              }}
-              variant="contained"
-            >
-              Clear Data Pix
-            </CustomButton>
-          </ContainerRow>
-        </>
-      )}
+      {operation === operation_withdraw &&
+        selected_type === "4" &&
+        checkIsTypeWithdrawValid(type) && (
+          <>
+            <ContainerRow>
+              <ContainerFlexWidthCustom widthPercent={48}>
+                <ContainerHeight height={25} />
+                <RadioGroup
+                  defaultCheckedValue={pix_key_type}
+                  setChecked={(value) => handleSetPixKey(value)}
+                  labelGroup="Pix Key Type(OPTIONAL)"
+                  checkData={[
+                    { value: PixKeyTypes.document, label: "CPF/CNPJ" },
+                    { value: PixKeyTypes.phone, label: "Phone" },
+                    { value: PixKeyTypes.email, label: "Email" },
+                  ]}
+                />
+              </ContainerFlexWidthCustom>
+              <ContainerFlexWidthCustom widthPercent={48}>
+                <ContainerHeight height={30} />
+                <Input
+                  value={pix_key}
+                  setValue={(value) => setPix_key(value)}
+                  label="User Pix Key"
+                />
+              </ContainerFlexWidthCustom>
+            </ContainerRow>
+            <ContainerRow>
+              <span style={{ marginTop: "10px", marginBottom: "10px" }}>
+                Note: The Pix Key Type is optional, but if selected it is
+                necessary to fill in the User Pix Key Value.
+              </span>
+            </ContainerRow>
+            <ContainerRow>
+              <CustomButton
+                onClick={() => handleCleanPixKeyData()}
+                style={{
+                  width: "30%",
+                  textTransform: "none",
+                }}
+                variant="contained"
+              >
+                Clear Data Pix
+              </CustomButton>
+            </ContainerRow>
+          </>
+        )}
       <ContainerHeight height={15} />
       <Input
         value={callback_url}
