@@ -1,6 +1,6 @@
 export const DataDefaultDev = {
   base_url: "https://dev.gateway.paylivre.com",
-  gateway_token: "UdXN2e33r3xlldm1UJSXGR5mslv9HeWP",
+  gateway_token: "vfWrvWcvxuqmt4yfEtHZKU4a9q0lSAnZ",
   merchant_id: "302",
   merchant_transaction_id: "",
   email: "user_gateway_test@tutanota.com",
