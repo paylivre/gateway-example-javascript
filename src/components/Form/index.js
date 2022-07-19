@@ -49,7 +49,7 @@ function Form({
   const [operation, setOperation] = useState(operation_deposit);
   const [amount, setAmount] = useState("500");
   const [callback_url, setcCallback_url] = useState(
-    "https://api.dev.paylivre.com/api/v2/callback"
+    "https://api.dev.paylivre.com/dev/v2/callback"
   );
   const [redirect_url, setRedirect_url] = useState(
     "https://www.merchant_to_you.com"
